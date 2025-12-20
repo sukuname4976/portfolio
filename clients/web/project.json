@@ -1,0 +1,44 @@
+{
+  "name": "web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "clients/web",
+  "projectType": "application",
+  "implicitDependencies": ["bff"],
+  "targets": {
+    "generate-api-client": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'Generate TypeScript client from BFF IF specification'"
+      },
+      "inputs": ["apis/bff/IF/**/*"],
+      "outputs": ["clients/web/src/api/generated/**/*"]
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run build",
+        "cwd": "clients/web"
+      },
+      "inputs": [
+        "production",
+        "clients/web/**/*",
+        "!clients/web/src/api/generated/**/*"
+      ]
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run dev",
+        "cwd": "clients/web"
+      }
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm run lint",
+        "cwd": "clients/web"
+      }
+    }
+  }
+}
+

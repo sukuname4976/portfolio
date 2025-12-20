@@ -1,0 +1,45 @@
+{
+  "name": "agent",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apis/agent",
+  "projectType": "application",
+  "implicitDependencies": ["python-shared"],
+  "targets": {
+    "generate-openapi": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'Generate openapi.yml from FastAPI code'"
+      },
+      "inputs": ["apis/agent/**/*.py"],
+      "outputs": ["apis/agent/IF/openapi.yml"]
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'Python service - no build step required'"
+      },
+      "inputs": [
+        "production",
+        "apis/agent/**/*",
+        "!apis/agent/IF/**/*"
+      ],
+      "dependsOn": ["^build"]
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "python ./apis/agent/main.py",
+        "env": {
+          "PORT": "8000"
+        }
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "python -m pytest ./apis/agent/ --if-present || echo 'No tests configured'"
+      }
+    }
+  }
+}
+

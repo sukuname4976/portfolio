@@ -1,0 +1,31 @@
+{
+  "name": "Swift/iOS Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "sswg.swift-lang",
+        "vadimcn.vscode-lldb"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "[swift]": {
+          "editor.defaultFormatter": "sswg.swift-lang"
+        }
+      }
+    }
+  },
+
+  "postCreateCommand": "swift --version || echo 'Note: Swift requires macOS. This container provides basic Swift support.'",
+  
+  "forwardPorts": [],
+  
+  "remoteEnv": {},
+  
+  "comment": "Note: Full iOS development requires macOS. This DevContainer provides basic Swift support but Xcode and iOS Simulator are not available in Linux containers."
+}
+

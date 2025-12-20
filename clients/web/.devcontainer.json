@@ -1,0 +1,6 @@
+{
+  "extends": "../../.devcontainer/nodejs/devcontainer.json",
+  "workspaceFolder": "/workspace/clients/web",
+  "name": "Web Application - Next.js"
+}
+

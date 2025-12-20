@@ -1,0 +1,45 @@
+{
+  "name": "user",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apis/user",
+  "projectType": "application",
+  "implicitDependencies": ["golang-shared"],
+  "targets": {
+    "generate-openapi": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'Generate openapi.yml from Go code'"
+      },
+      "inputs": ["apis/user/**/*.go"],
+      "outputs": ["apis/user/IF/openapi.yml"]
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "go build -o bin/user ./apis/user"
+      },
+      "inputs": [
+        "production",
+        "apis/user/**/*",
+        "!apis/user/IF/**/*"
+      ],
+      "dependsOn": ["^build"]
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "go run ./apis/user",
+        "env": {
+          "PORT": "8081"
+        }
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "go test ./apis/user/..."
+      }
+    }
+  }
+}
+

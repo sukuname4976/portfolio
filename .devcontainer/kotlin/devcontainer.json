@@ -1,0 +1,34 @@
+{
+  "name": "Kotlin/Android Development Environment",
+  "image": "mcr.microsoft.com/devcontainers/android:latest",
+  
+  "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "fwcd.kotlin",
+        "mathiasfrohlich.Kotlin",
+        "vscjava.vscode-gradle"
+      ],
+      "settings": {
+        "kotlin.languageServer.enabled": true,
+        "editor.formatOnSave": true,
+        "[kotlin]": {
+          "editor.defaultFormatter": "fwcd.kotlin"
+        }
+      }
+    }
+  },
+
+  "postCreateCommand": "kotlin --version && echo 'Kotlin/Android development environment ready!'",
+  
+  "forwardPorts": [8080, 8081],
+  
+  "remoteEnv": {
+    "ANDROID_HOME": "/opt/android-sdk",
+    "JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-amd64"
+  }
+}
+

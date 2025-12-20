@@ -1,0 +1,38 @@
+{
+  "name": "ios",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "clients/ios",
+  "projectType": "application",
+  "implicitDependencies": ["bff"],
+  "targets": {
+    "generate-api-client": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'Generate Swift client from BFF IF specification'"
+      },
+      "inputs": ["apis/bff/IF/**/*"],
+      "outputs": ["clients/ios/Sources/PortfolioiOS/api/generated/**/*"]
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "swift build",
+        "cwd": "clients/ios"
+      },
+      "inputs": [
+        "production",
+        "clients/ios/**/*",
+        "!clients/ios/Sources/PortfolioiOS/api/generated/**/*"
+      ]
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "swift test",
+        "cwd": "clients/ios"
+      }
+    },
+    "comment": "Note: Full iOS app development requires Xcode on macOS. Use 'xcodebuild' commands for iOS app builds."
+  }
+}
+

@@ -1,0 +1,49 @@
+{
+  "name": "bff",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apis/bff",
+  "projectType": "application",
+  "implicitDependencies": ["user", "agent", "golang-shared"],
+  "targets": {
+    "generate-clients": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'Generate clients from user and agent IF specifications'"
+      },
+      "inputs": [
+        "apis/user/IF/**/*",
+        "apis/agent/IF/**/*"
+      ],
+      "outputs": ["apis/bff/internal/clients/**/*"]
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "go build -o bin/bff ./apis/bff"
+      },
+      "inputs": [
+        "production",
+        "apis/bff/**/*",
+        "!apis/bff/internal/clients/**/*",
+        "!apis/bff/IF/**/*"
+      ],
+      "dependsOn": ["^build"]
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "go run ./apis/bff",
+        "env": {
+          "PORT": "8080"
+        }
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "go test ./apis/bff/..."
+      }
+    }
+  }
+}
+

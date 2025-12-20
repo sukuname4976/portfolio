@@ -1,0 +1,44 @@
+{
+  "name": "android",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "clients/android",
+  "projectType": "application",
+  "implicitDependencies": ["bff"],
+  "targets": {
+    "generate-api-client": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo 'Generate Kotlin client from BFF IF specification'"
+      },
+      "inputs": ["apis/bff/IF/**/*"],
+      "outputs": ["clients/android/app/src/main/java/com/portfolio/android/api/generated/**/*"]
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd clients/android && ./gradlew assembleDebug",
+        "cwd": "clients/android"
+      },
+      "inputs": [
+        "production",
+        "clients/android/**/*",
+        "!clients/android/app/src/main/java/com/portfolio/android/api/generated/**/*"
+      ]
+    },
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd clients/android && ./gradlew installDebug",
+        "cwd": "clients/android"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd clients/android && ./gradlew test",
+        "cwd": "clients/android"
+      }
+    }
+  }
+}
+

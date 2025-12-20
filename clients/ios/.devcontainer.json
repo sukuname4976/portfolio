@@ -1,0 +1,7 @@
+{
+  "extends": "../../.devcontainer/swift/devcontainer.json",
+  "workspaceFolder": "/workspace/clients/ios",
+  "name": "iOS Application - Swift",
+  "comment": "Note: Full iOS development requires macOS. For best experience, develop on macOS with Xcode."
+}
+

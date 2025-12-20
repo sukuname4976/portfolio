@@ -1,0 +1,29 @@
+{
+  "name": "portfolio-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Portfolio monorepo - Microservices, Frontend Apps, and Infrastructure",
+  "workspaces": [
+    "clients/*",
+    "apis/*"
+  ],
+  "scripts": {
+    "nx": "nx",
+    "build": "nx build",
+    "test": "nx test",
+    "lint": "nx lint",
+    "affected:build": "nx affected -t build",
+    "affected:test": "nx affected -t test",
+    "affected:lint": "nx affected -t lint",
+    "graph": "nx graph"
+  },
+  "devDependencies": {
+    "@nx/workspace": "^17.0.0",
+    "nx": "^17.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
+

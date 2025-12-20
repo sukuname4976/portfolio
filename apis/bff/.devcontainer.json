@@ -1,0 +1,6 @@
+{
+  "extends": "../../.devcontainer/go/devcontainer.json",
+  "workspaceFolder": "/workspace/apis/bff",
+  "name": "BFF Service - Go"
+}
+

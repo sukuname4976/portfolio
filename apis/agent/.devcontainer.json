@@ -1,0 +1,6 @@
+{
+  "extends": "../../.devcontainer/python/devcontainer.json",
+  "workspaceFolder": "/workspace/apis/agent",
+  "name": "Agent Service - Python"
+}
+

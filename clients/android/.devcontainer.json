@@ -1,0 +1,6 @@
+{
+  "extends": "../../.devcontainer/kotlin/devcontainer.json",
+  "workspaceFolder": "/workspace/clients/android",
+  "name": "Android Application - Kotlin"
+}
+

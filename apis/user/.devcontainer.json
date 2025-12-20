@@ -1,0 +1,6 @@
+{
+  "extends": "../../.devcontainer/go/devcontainer.json",
+  "workspaceFolder": "/workspace/apis/user",
+  "name": "User Service - Go"
+}
+

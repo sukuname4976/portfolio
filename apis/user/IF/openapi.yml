@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info:
+  title: User Service API
+  version: 1.0.0
+  description: User service API specification
+servers:
+  - url: http://localhost:8081
+    description: Local development server
+paths:
+  /:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: Service is running
+          content:
+            text/plain:
+              schema:
+                type: string
+

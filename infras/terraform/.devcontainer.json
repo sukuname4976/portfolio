@@ -1,0 +1,6 @@
+{
+  "extends": "../../.devcontainer/terraform/devcontainer.json",
+  "workspaceFolder": "/workspace/infras/terraform",
+  "name": "Terraform Infrastructure"
+}
+
