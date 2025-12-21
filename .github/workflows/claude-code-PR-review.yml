@@ -1,0 +1,43 @@
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+concurrency:
+  group: claude-code-pr-review-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  review:
+    name: Claude Code Pull Request コードレビュー
+    runs-on: ubuntu-latest
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v4
+
+      - name: プロンプトをファイルから読み込み
+        id: prompt
+        shell: bash
+        run: |
+          PROMPT_FILE=".github/workflows/claude-review.md"
+          if [ ! -f "$PROMPT_FILE" ]; then
+            echo "プロンプトファイルが見つかりません: $PROMPT_FILE" >&2
+            exit 1
+          fi
+          {
+            echo "text<<'EOF'"
+            cat "$PROMPT_FILE"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Claude Code で Pull Request のコードレビューを実行
+        uses: anthropics/claude-code-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: ${{ steps.prompt.outputs.text }}

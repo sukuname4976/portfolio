@@ -169,6 +169,25 @@ nx serve <project-name>
 
 プルリクエストを歓迎します。大きな変更の場合は、まずイシューを開いて変更内容を議論してください。
 
+## 🤖 Claude Code（GitHub Actions）による自動レビュー
+
+Pull Request作成/更新時に、Claudeが自動でコードレビューコメントを投稿します。
+
+### セットアップ（リポジトリ管理者）
+
+- **Secretsの追加**: GitHub リポジトリの `Settings > Secrets and variables > Actions` で以下を登録します。
+  - **`ANTHROPIC_API_KEY`**: AnthropicのAPIキー
+
+ワークフローは `.github/workflows/claude-review.yml` に定義されています。
+
+### プロンプトの調整
+
+- プロンプトは `.github/workflows/claude-review.md` を編集して調整します（PRごとに自動で反映されます）。
+
+### 注意
+
+- **ForkからのPR**: フォークPRではSecretsが利用できないため、このワークフローは自動的にスキップされます（失敗ノイズ防止）。
+
 ## 📄 ライセンス
 
 [ライセンス情報を追加]
