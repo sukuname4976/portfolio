@@ -1,4 +1,0 @@
-{
-  "name": "Select Dev Container",
-  "image": "mcr.microsoft.com/devcontainers/base:ubuntu"
-}
