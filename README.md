@@ -176,9 +176,9 @@ Pull Request作成/更新時に、Claudeが自動でコードレビューコメ�
 ### セットアップ（リポジトリ管理者）
 
 - **Secretsの追加**: GitHub リポジトリの `Settings > Secrets and variables > Actions` で以下を登録します。
-  - **`ANTHROPIC_API_KEY`**: AnthropicのAPIキー
+  - **`CLAUDE_CODE_OAUTH_TOKEN`**: Claude Code（Proアカウント）用のOAuthトークン
 
-ワークフローは `.github/workflows/claude-review.yml` に定義されています。
+ワークフローは `.github/workflows/claude-code-PR-review.yml` に定義されています。
 
 ### プロンプトの調整
 
@@ -186,7 +186,7 @@ Pull Request作成/更新時に、Claudeが自動でコードレビューコメ�
 
 ### 注意
 
-- **ForkからのPR**: フォークPRではSecretsが利用できないため、このワークフローは自動的にスキップされます（失敗ノイズ防止）。
+- **認証情報の取り扱い**: `CLAUDE_CODE_OAUTH_TOKEN` は機密情報です。GitHub Secretsで管理し、必要に応じて更新してください。
 
 ## 📄 ライセンス
 
