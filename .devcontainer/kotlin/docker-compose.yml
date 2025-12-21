@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspace:cached
+      - vscode-extensions:/root/.vscode-server/extensions
+    command: sleep infinity
+    environment:
+      - WORKSPACE_ROOT=/workspace
+      - ANDROID_HOME=/opt/android-sdk
+      - JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+    # 開発用のエミュレーターやテストサーバーが必要な場合は以下を追加
+    # depends_on:
+    #   - test-server
+
+  # 開発用テストサーバー（必要に応じてコメントアウトを解除）
+  # test-server:
+  #   image: nginx:alpine
+  #   ports:
+  #     - "8080:80"
+
+volumes:
+  vscode-extensions:
+

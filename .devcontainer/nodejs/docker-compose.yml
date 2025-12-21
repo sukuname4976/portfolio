@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspace:cached
+      - vscode-extensions:/root/.vscode-server/extensions
+    command: sleep infinity
+    environment:
+      - WORKSPACE_ROOT=/workspace
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
+    # 開発用のモックサーバーやAPIサーバーが必要な場合は以下を追加
+    # depends_on:
+    #   - mock-server
+
+  # 開発用モックサーバー（必要に応じてコメントアウトを解除）
+  # mock-server:
+  #   image: mockserver/mockserver:latest
+  #   ports:
+  #     - "1080:1080"
+  #   environment:
+  #     - MOCKSERVER_INITIALIZATION_JSON_PATH=/config/mockserver-config.json
+
+volumes:
+  vscode-extensions:
+

@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspace:cached
+      - vscode-extensions:/root/.vscode-server/extensions
+    command: sleep infinity
+    environment:
+      - WORKSPACE_ROOT=/workspace
+    # 注意: 完全なiOS開発にはmacOSとXcodeが必要です
+    # このDevContainerは基本的なSwift開発をサポートします
+
+volumes:
+  vscode-extensions:
+
