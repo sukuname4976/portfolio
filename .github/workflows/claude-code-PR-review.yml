@@ -24,7 +24,7 @@ jobs:
         id: prompt
         shell: bash
         run: |
-          PROMPT_FILE=".github/workflows/claude-review.md"
+          PROMPT_FILE=".github/workflows/claude-code-PR-review.md"
           if [ ! -f "$PROMPT_FILE" ]; then
             echo "プロンプトファイルが見つかりません: $PROMPT_FILE" >&2
             exit 1
