@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspace:cached
+      - vscode-extensions:/root/.vscode-server/extensions
+    command: sleep infinity
+    environment:
+      - WORKSPACE_ROOT=/workspace
+      - TF_LOG=INFO
+    # Terraformのローカルテスト用サービスが必要な場合は以下を追加
+    # depends_on:
+    #   - localstack
+
+  # ローカルテスト用のAWS互換サービス（必要に応じてコメントアウトを解除）
+  # localstack:
+  #   image: localstack/localstack:latest
+  #   ports:
+  #     - "4566:4566"
+  #   environment:
+  #     - SERVICES=s3,lambda,dynamodb
+  #   volumes:
+  #     - localstack-data:/var/lib/localstack
+
+volumes:
+  vscode-extensions:
+  # localstack-data:
+

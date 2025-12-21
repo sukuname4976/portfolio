@@ -1,9 +1,8 @@
 {
   "name": "Python Development Environment",
-  "image": "mcr.microsoft.com/devcontainers/python:3.11",
-  
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
   "workspaceFolder": "/workspace",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
   
   "customizations": {
     "vscode": {
@@ -29,11 +28,16 @@
 
   "postCreateCommand": "python --version && pip --version && echo 'Python development environment ready!'",
   
-  "forwardPorts": [8000, 8001],
+  "forwardPorts": [5432, 8000, 8001],
   
   "remoteEnv": {
     "PYTHONUNBUFFERED": "1",
-    "PYTHONDONTWRITEBYTECODE": "1"
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "POSTGRES_HOST": "postgres",
+    "POSTGRES_PORT": "5432",
+    "POSTGRES_USER": "dev",
+    "POSTGRES_PASSWORD": "dev",
+    "POSTGRES_DB": "portfolio_dev"
   }
 }
 

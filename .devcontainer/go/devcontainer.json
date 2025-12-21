@@ -1,9 +1,8 @@
 {
   "name": "Go Development Environment",
-  "image": "mcr.microsoft.com/devcontainers/go:1.21",
-  
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
   "workspaceFolder": "/workspace",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
   
   "customizations": {
     "vscode": {
@@ -30,11 +29,16 @@
 
   "postCreateCommand": "go version && echo 'Go development environment ready!'",
   
-  "forwardPorts": [8080, 8081, 8082, 8083, 8084, 8085, 8086, 8087, 8088, 8089, 8090, 8091, 8092, 8093, 8094, 8095, 8096, 8097, 8098, 8099],
+  "forwardPorts": [5432, 8080, 8081, 8082, 8083, 8084, 8085, 8086, 8087, 8088, 8089, 8090, 8091, 8092, 8093, 8094, 8095, 8096, 8097, 8098, 8099],
   
   "remoteEnv": {
     "GO111MODULE": "on",
-    "GOPROXY": "https://proxy.golang.org,direct"
+    "GOPROXY": "https://proxy.golang.org,direct",
+    "POSTGRES_HOST": "postgres",
+    "POSTGRES_PORT": "5432",
+    "POSTGRES_USER": "dev",
+    "POSTGRES_PASSWORD": "dev",
+    "POSTGRES_DB": "portfolio_dev"
   }
 }
 
