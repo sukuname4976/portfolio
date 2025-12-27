@@ -3,14 +3,31 @@
   "dockerComposeFile": "docker-compose.yaml",
   "service": "go-workplace-devcontainer",
   "workspaceFolder": "/monorepo-root-as-go-workspace",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
+        // Go
         "golang.go",
-        "ms-azuretools.vscode-docker",
-        "redhat.vscode-yaml",
+        // 汎用
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "editorconfig.editorconfig",
         "exiasr.hadolint",
-        "davidanson.vscode-markdownlint"
+        "github.vscode-github-actions",
+        "gruntfuggly.todo-tree",
+        "mechatroner.rainbow-csv",
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-docker",
+        "MS-CEINTL.vscode-language-pack-ja",
+        "oderwat.indent-rainbow",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens"
       ],
       "settings": {
         "go.toolsManagement.checkForUpdates": "local",
@@ -24,7 +41,7 @@
       }
     }
   },
-  "postCreateCommand": "go version && echo 'Go の開発コンテナが正常に起動しました'",
+  "postCreateCommand": "go version && gh --version && claude --version && echo 'Go の開発コンテナが正常に起動しました'",
   "forwardPorts": [
     5432,
     8000

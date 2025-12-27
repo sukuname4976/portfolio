@@ -3,14 +3,30 @@
   "dockerComposeFile": "docker-compose.yaml",
   "service": "nextjs-workplace-devcontainer",
   "workspaceFolder": "/monorepo-root-as-nextjs-workspace",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
+        // Next.js
         "biomejs.biome",
-        "ms-azuretools.vscode-docker",
-        "redhat.vscode-yaml",
+        // 汎用
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "editorconfig.editorconfig",
         "exiasr.hadolint",
-        "davidanson.vscode-markdownlint"
+        "github.vscode-github-actions",
+        "gruntfuggly.todo-tree",
+        "mechatroner.rainbow-csv",
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-docker",
+        "MS-CEINTL.vscode-language-pack-ja",
+        "oderwat.indent-rainbow",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -18,7 +34,7 @@
       }
     }
   },
-  "postCreateCommand": "node --version && npm --version && echo 'Next.js の開発コンテナが正常に起動しました'",
+  "postCreateCommand": "node --version && npm --version && gh --version && claude --version && echo 'Next.js の開発コンテナが正常に起動しました'",
   "forwardPorts": [
     3000
   ]
