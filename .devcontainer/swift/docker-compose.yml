@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     build:
@@ -11,9 +9,7 @@ services:
     command: sleep infinity
     environment:
       - WORKSPACE_ROOT=/workspace
-    # 注意: 完全なiOS開発にはmacOSとXcodeが必要です
-    # このDevContainerは基本的なSwift開発をサポートします
+    # 完全なiOS開発にはmacOSとXcodeが必要であり、このDevContainerは基本的なSwift開発をサポートする
 
 volumes:
   vscode-extensions:
-

@@ -1,13 +1,12 @@
 {
-  "name": "Swift Devcontainer",
+  "name": "Next.js Devcontainer",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
       "extensions": [
-        "sswg.swift-lang",
-        "vadimcn.vscode-lldb",
+        "biomejs.biome",
         "ms-azuretools.vscode-docker",
         "redhat.vscode-yaml",
         "exiasr.hadolint",
@@ -15,14 +14,12 @@
       ],
       "settings": {
         "editor.formatOnSave": true,
-        "[swift]": {
-          "editor.defaultFormatter": "sswg.swift-lang"
-        }
+        "editor.defaultFormatter": "biomejs.biome"
       }
     }
   },
-  "postCreateCommand": "swift --version && echo 'Swift の開発コンテナが正常に起動しました'",
+  "postCreateCommand": "node --version && npm --version && echo 'Next.js の開発コンテナが正常に起動しました'",
   "forwardPorts": [
-    8000
+    3000
   ]
 }

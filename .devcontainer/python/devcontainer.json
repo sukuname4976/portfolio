@@ -1,23 +1,23 @@
 {
-  "name": "Python Development Environment",
+  "name": "Python Devcontainer",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspace",
-  
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
-        "ms-python.black-formatter",
-        "charliermarsh.ruff"
+        "charliermarsh.ruff",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "exiasr.hadolint",
+        "davidanson.vscode-markdownlint"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python",
-        "python.formatting.provider": "black",
         "editor.formatOnSave": true,
         "[python]": {
-          "editor.defaultFormatter": "ms-python.black-formatter",
+          "editor.defaultFormatter": "charliermarsh.ruff",
           "editor.codeActionsOnSave": {
             "source.organizeImports": "explicit"
           }
@@ -25,19 +25,9 @@
       }
     }
   },
-
-  "postCreateCommand": "python --version && pip --version && echo 'Python development environment ready!'",
-  
-  "forwardPorts": [5432, 8000, 8001],
-  
-  "remoteEnv": {
-    "PYTHONUNBUFFERED": "1",
-    "PYTHONDONTWRITEBYTECODE": "1",
-    "POSTGRES_HOST": "postgres",
-    "POSTGRES_PORT": "5432",
-    "POSTGRES_USER": "dev",
-    "POSTGRES_PASSWORD": "dev",
-    "POSTGRES_DB": "portfolio_dev"
-  }
+  "postCreateCommand": "uv --version && python --version && echo 'Python の開発コンテナが正常に起動しました'",
+  "forwardPorts": [
+    5432,
+    8000
+  ]
 }
-

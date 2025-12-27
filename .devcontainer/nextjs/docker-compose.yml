@@ -9,7 +9,8 @@ services:
     command: sleep infinity
     environment:
       - WORKSPACE_ROOT=/workspace
-      - TF_LOG=INFO
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
 
 volumes:
   vscode-extensions:

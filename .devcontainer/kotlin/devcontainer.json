@@ -1,18 +1,19 @@
 {
-  "name": "Kotlin/Android Development Environment",
+  "name": "Kotlin Devcontainer",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
   "workspaceFolder": "/workspace",
-  
   "customizations": {
     "vscode": {
       "extensions": [
         "fwcd.kotlin",
-        "mathiasfrohlich.Kotlin",
-        "vscjava.vscode-gradle"
+        "vscjava.vscode-gradle",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "exiasr.hadolint",
+        "davidanson.vscode-markdownlint"
       ],
       "settings": {
-        "kotlin.languageServer.enabled": true,
         "editor.formatOnSave": true,
         "[kotlin]": {
           "editor.defaultFormatter": "fwcd.kotlin"
@@ -20,14 +21,8 @@
       }
     }
   },
-
-  "postCreateCommand": "kotlin --version && echo 'Kotlin/Android development environment ready!'",
-  
-  "forwardPorts": [8080, 8081],
-  
-  "remoteEnv": {
-    "ANDROID_HOME": "/opt/android-sdk",
-    "JAVA_HOME": "/usr/lib/jvm/java-17-openjdk-amd64"
-  }
+  "postCreateCommand": "kotlin --version && echo 'Kotlin の開発コンテナが正常に起動しました'",
+  "forwardPorts": [
+    8000
+  ]
 }
-
