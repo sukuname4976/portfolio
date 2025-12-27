@@ -1,0 +1,51 @@
+name: 🎯 親タスク
+description: 大目標を管理する親タスク (Projectsで進捗管理する単位)
+title: "[Parent Task: ]"
+labels: ["Parent Task"]
+body:
+  - type: textarea
+    id: overview
+    attributes:
+      label: 📋 概要
+      description: この親タスクで達成したい大目標と、その背景・目的を記述
+      value: 後で書く
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: target-projects
+    attributes:
+      label: 📦 対象プロジェクト
+      description: このタスクで追加・修正の対象となる Nx プロジェクトを選択
+      options:
+        - label: 🤖 apis/agent
+        - label: 🔀 apis/bff
+        - label: 👤 apis/user
+        - label: 📱 clients/android
+        - label: 🍎 clients/ios
+        - label: 🌐 clients/web
+        - label: ☁️ infras/terraform
+        - label: 📚 libraries/golang-shared
+        - label: 🐍 libraries/python-shared
+        - label: ⚡ Nx プロジェクト以外 (CI/CD・Devcontainer 等)
+    validations:
+      required: true
+
+  - type: textarea
+    id: done-conditions
+    attributes:
+      label: ✅ 親タスク完了条件
+      description: 価値の提供が可能となる、親タスクの完了条件を明確に定義
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ]
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 💬 備考
+      description: 関連リンクや、その他特記事項
+      value: 特に無し
