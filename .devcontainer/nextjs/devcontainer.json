@@ -15,18 +15,15 @@
         // 汎用
         "davidanson.vscode-markdownlint",
         "eamodio.gitlens",
-        "editorconfig.editorconfig",
         "exiasr.hadolint",
         "github.vscode-github-actions",
-        "gruntfuggly.todo-tree",
         "mechatroner.rainbow-csv",
         "mhutchie.git-graph",
         "ms-azuretools.vscode-docker",
         "MS-CEINTL.vscode-language-pack-ja",
         "oderwat.indent-rainbow",
         "redhat.vscode-yaml",
-        "streetsidesoftware.code-spell-checker",
-        "usernamehw.errorlens"
+        "streetsidesoftware.code-spell-checker"
       ],
       "settings": {
         "editor.formatOnSave": true,
