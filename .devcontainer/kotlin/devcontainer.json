@@ -1,8 +1,8 @@
 {
   "name": "Kotlin Devcontainer",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspace",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "kotlin-workplace-devcontainer",
+  "workspaceFolder": "/monorepo-root-as-kotlin-workspace",
   "customizations": {
     "vscode": {
       "extensions": [

@@ -1,8 +1,8 @@
 {
   "name": "Go Devcontainer",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspace",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "go-workplace-devcontainer",
+  "workspaceFolder": "/monorepo-root-as-go-workspace",
   "customizations": {
     "vscode": {
       "extensions": [

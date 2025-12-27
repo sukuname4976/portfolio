@@ -1,8 +1,8 @@
 {
   "name": "Python Devcontainer",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspace",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "python-workplace-devcontainer",
+  "workspaceFolder": "/monorepo-root-as-python-workspace",
   "customizations": {
     "vscode": {
       "extensions": [

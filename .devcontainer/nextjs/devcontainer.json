@@ -1,8 +1,8 @@
 {
   "name": "Next.js Devcontainer",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspace",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "nextjs-workplace-devcontainer",
+  "workspaceFolder": "/monorepo-root-as-nextjs-workspace",
   "customizations": {
     "vscode": {
       "extensions": [

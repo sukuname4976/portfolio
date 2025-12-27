@@ -1,15 +1,16 @@
 services:
-  app:
+  swift-workplace-devcontainer:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../..:/workspace:cached
+      - ../..:/monorepo-root-as-swift-workspace:cached
       - vscode-extensions:/root/.vscode-server/extensions
     command: sleep infinity
     environment:
-      - WORKSPACE_ROOT=/workspace
+      - WORKSPACE_ROOT=/monorepo-root-as-swift-workspace
     # 完全なiOS開発にはmacOSとXcodeが必要であり、このDevContainerは基本的なSwift開発をサポートする
 
 volumes:
   vscode-extensions:
+

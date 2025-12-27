@@ -1,14 +1,14 @@
 services:
-  app:
+  go-workplace-devcontainer:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../..:/workspace:cached
+      - ../..:/monorepo-root-as-go-workspace:cached
       - vscode-extensions:/root/.vscode-server/extensions
     command: sleep infinity
     environment:
-      - WORKSPACE_ROOT=/workspace
+      - WORKSPACE_ROOT=/monorepo-root-as-go-workspace
       - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5432
       - POSTGRES_USER=local
@@ -23,7 +23,7 @@ services:
     environment:
       POSTGRES_USER: local
       POSTGRES_PASSWORD: local
-      POSTGRES_DB:local
+      POSTGRES_DB: local
     ports:
       - "5432:5432"
     volumes:

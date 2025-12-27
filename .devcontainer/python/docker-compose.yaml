@@ -1,16 +1,16 @@
 version: '3.8'
 
 services:
-  app:
+  python-workplace-devcontainer:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../..:/workspace:cached
+      - ../..:/monorepo-root-as-python-workspace:cached
       - vscode-extensions:/root/.vscode-server/extensions
     command: sleep infinity
     environment:
-      - WORKSPACE_ROOT=/workspace
+      - WORKSPACE_ROOT=/monorepo-root-as-python-workspace
       - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5432
       - POSTGRES_USER=local
@@ -41,3 +41,4 @@ services:
 volumes:
   vscode-extensions:
   postgres-data:
+

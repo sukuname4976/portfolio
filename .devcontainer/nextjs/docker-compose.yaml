@@ -1,15 +1,17 @@
 services:
-  app:
+  nextjs-workplace-devcontainer:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../..:/workspace:cached
+      - ../..:/monorepo-root-as-nextjs-workspace:cached
       - vscode-extensions:/root/.vscode-server/extensions
     command: sleep infinity
     environment:
-      - WORKSPACE_ROOT=/workspace
-      - TF_LOG=INFO
+      - WORKSPACE_ROOT=/monorepo-root-as-nextjs-workspace
+      - NODE_ENV=development
+      - NEXT_TELEMETRY_DISABLED=1
 
 volumes:
   vscode-extensions:
+

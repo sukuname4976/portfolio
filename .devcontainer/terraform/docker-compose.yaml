@@ -1,16 +1,16 @@
 services:
-  app:
+  terraform-workplace-devcontainer:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../..:/workspace:cached
+      - ../..:/monorepo-root-as-terraform-workspace:cached
       - vscode-extensions:/root/.vscode-server/extensions
     command: sleep infinity
     environment:
-      - WORKSPACE_ROOT=/workspace
-      - NODE_ENV=development
-      - NEXT_TELEMETRY_DISABLED=1
+      - WORKSPACE_ROOT=/monorepo-root-as-terraform-workspace
+      - TF_LOG=INFO
 
 volumes:
   vscode-extensions:
+
