@@ -8,10 +8,10 @@
     "generate-openapi": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "echo 'Generate openapi.yml from Go code'"
+        "command": "echo 'Generate openapi.yaml from Go code'"
       },
       "inputs": ["apis/user/**/*.go"],
-      "outputs": ["apis/user/IF/openapi.yml"]
+      "outputs": ["apis/user/IF/openapi.yaml"]
     },
     "build": {
       "executor": "nx:run-commands",

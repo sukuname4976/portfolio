@@ -1,6 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/python:3.11
-
-RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+FROM mcr.microsoft.com/devcontainers/typescript-node:18
 
 RUN apt-get update && apt-get install -y \
     curl \
@@ -10,5 +8,4 @@ RUN apt-get update && apt-get install -y \
     ripgrep \
     tree \
     make \
-    postgresql-client \
     && rm -rf /var/lib/apt/lists/*

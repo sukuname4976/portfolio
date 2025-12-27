@@ -1,19 +1,17 @@
 {
-  "name": "Kotlin Devcontainer",
+  "name": "Next.js Devcontainer",
   "dockerComposeFile": "docker-compose.yaml",
-  "service": "kotlin-workspace-devcontainer",
-  "workspaceFolder": "/monorepo-root-as-kotlin-workspace",
+  "service": "nextjs-workspace-devcontainer",
+  "workspaceFolder": "/monorepo-root-as-nextjs-workspace",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
   },
   "customizations": {
     "vscode": {
       "extensions": [
-        // Kotlin
-        "fwcd.kotlin",
-        "vscjava.vscode-gradle",
+        // Next.js
+        "biomejs.biome",
         // 汎用
         "davidanson.vscode-markdownlint",
         "eamodio.gitlens",
@@ -32,14 +30,12 @@
       ],
       "settings": {
         "editor.formatOnSave": true,
-        "[kotlin]": {
-          "editor.defaultFormatter": "fwcd.kotlin"
-        }
+        "editor.defaultFormatter": "biomejs.biome"
       }
     }
   },
-  "postCreateCommand": "kotlin --version && gh --version && claude --version && echo 'Kotlin の開発コンテナが正常に起動しました'",
+  "postCreateCommand": "node --version && npm --version && gh --version && claude --version && echo 'Next.js の開発コンテナが正常に起動しました'",
   "forwardPorts": [
-    8000
+    3000
   ]
 }

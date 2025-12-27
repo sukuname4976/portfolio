@@ -1,14 +1,34 @@
 {
-  "name": "Swift/iOS Development Environment",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspace",
-  
+  "name": "Swift Devcontainer",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "swift-workspace-devcontainer",
+  "workspaceFolder": "/monorepo-root-as-swift-workspace",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
+        // Swift
         "sswg.swift-lang",
-        "vadimcn.vscode-lldb"
+        "vadimcn.vscode-lldb",
+        // 汎用
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "editorconfig.editorconfig",
+        "exiasr.hadolint",
+        "github.vscode-github-actions",
+        "gruntfuggly.todo-tree",
+        "mechatroner.rainbow-csv",
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-docker",
+        "MS-CEINTL.vscode-language-pack-ja",
+        "oderwat.indent-rainbow",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -18,13 +38,8 @@
       }
     }
   },
-
-  "postCreateCommand": "swift --version || echo 'Note: Swift requires macOS. This container provides basic Swift support.'",
-  
-  "forwardPorts": [],
-  
-  "remoteEnv": {},
-  
-  "comment": "Note: Full iOS development requires macOS. This DevContainer provides basic Swift support but Xcode and iOS Simulator are not available in Linux containers."
+  "postCreateCommand": "swift --version && gh --version && claude --version && echo 'Swift の開発コンテナが正常に起動しました'",
+  "forwardPorts": [
+    8000
+  ]
 }
-

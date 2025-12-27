@@ -1,21 +1,36 @@
 {
-  "name": "Go Development Environment",
-  "dockerComposeFile": "docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspace",
-  
+  "name": "Go Devcontainer",
+  "dockerComposeFile": "docker-compose.yaml",
+  "service": "go-workspace-devcontainer",
+  "workspaceFolder": "/monorepo-root-as-go-workspace",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
+        // Go
         "golang.go",
-        "ms-vscode.vscode-json"
+        // 汎用
+        "davidanson.vscode-markdownlint",
+        "eamodio.gitlens",
+        "editorconfig.editorconfig",
+        "exiasr.hadolint",
+        "github.vscode-github-actions",
+        "gruntfuggly.todo-tree",
+        "mechatroner.rainbow-csv",
+        "mhutchie.git-graph",
+        "ms-azuretools.vscode-docker",
+        "MS-CEINTL.vscode-language-pack-ja",
+        "oderwat.indent-rainbow",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens"
       ],
       "settings": {
-        "go.useLanguageServer": true,
-        "go.gopath": "/go",
-        "go.goroot": "/usr/local/go",
         "go.toolsManagement.checkForUpdates": "local",
-        "go.testFlags": ["-v"],
         "editor.formatOnSave": true,
         "[go]": {
           "editor.defaultFormatter": "golang.go",
@@ -26,19 +41,9 @@
       }
     }
   },
-
-  "postCreateCommand": "go version && echo 'Go development environment ready!'",
-  
-  "forwardPorts": [5432, 8080, 8081, 8082, 8083, 8084, 8085, 8086, 8087, 8088, 8089, 8090, 8091, 8092, 8093, 8094, 8095, 8096, 8097, 8098, 8099],
-  
-  "remoteEnv": {
-    "GO111MODULE": "on",
-    "GOPROXY": "https://proxy.golang.org,direct",
-    "POSTGRES_HOST": "postgres",
-    "POSTGRES_PORT": "5432",
-    "POSTGRES_USER": "dev",
-    "POSTGRES_PASSWORD": "dev",
-    "POSTGRES_DB": "portfolio_dev"
-  }
+  "postCreateCommand": "go version && gh --version && claude --version && echo 'Go の開発コンテナが正常に起動しました'",
+  "forwardPorts": [
+    5432,
+    8000
+  ]
 }
-

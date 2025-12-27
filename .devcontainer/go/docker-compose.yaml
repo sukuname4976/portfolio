@@ -1,40 +1,35 @@
-version: '3.8'
-
 services:
-  app:
+  go-workspace-devcontainer:
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
-      - ../..:/workspace:cached
+      - ../..:/monorepo-root-as-go-workspace:cached
       - vscode-extensions:/root/.vscode-server/extensions
     command: sleep infinity
     environment:
-      - WORKSPACE_ROOT=/workspace
+      - WORKSPACE_ROOT=/monorepo-root-as-go-workspace
       - POSTGRES_HOST=postgres
       - POSTGRES_PORT=5432
-      - POSTGRES_USER=dev
-      - POSTGRES_PASSWORD=dev
-      - POSTGRES_DB=portfolio_dev
-      - PYTHONUNBUFFERED=1
-      - PYTHONDONTWRITEBYTECODE=1
+      - POSTGRES_USER=local
+      - POSTGRES_PASSWORD=local
+      - POSTGRES_DB=local
     depends_on:
       postgres:
         condition: service_healthy
 
-  # テスト用PostgreSQL
   postgres:
     image: postgres:15-alpine
     environment:
-      POSTGRES_USER: dev
-      POSTGRES_PASSWORD: dev
-      POSTGRES_DB: portfolio_dev
+      POSTGRES_USER: local
+      POSTGRES_PASSWORD: local
+      POSTGRES_DB: local
     ports:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U dev"]
+      test: ["CMD-SHELL", "pg_isready -U local"]
       interval: 5s
       timeout: 5s
       retries: 5

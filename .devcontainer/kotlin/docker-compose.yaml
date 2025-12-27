@@ -1,0 +1,17 @@
+services:
+  kotlin-workspace-devcontainer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/monorepo-root-as-kotlin-workspace:cached
+      - vscode-extensions:/root/.vscode-server/extensions
+    command: sleep infinity
+    environment:
+      - WORKSPACE_ROOT=/monorepo-root-as-kotlin-workspace
+      - ANDROID_HOME=/opt/android-sdk
+      - JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+
+volumes:
+  vscode-extensions:
+
