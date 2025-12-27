@@ -1,5 +1,5 @@
 services:
-  kotlin-workplace-devcontainer:
+  kotlin-workspace-devcontainer:
     build:
       context: .
       dockerfile: Dockerfile

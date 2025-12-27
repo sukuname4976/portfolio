@@ -1,7 +1,7 @@
 {
   "name": "Terraform Devcontainer",
   "dockerComposeFile": "docker-compose.yaml",
-  "service": "terraform-workplace-devcontainer",
+  "service": "terraform-workspace-devcontainer",
   "workspaceFolder": "/monorepo-root-as-terraform-workspace",
   "customizations": {
     "vscode": {

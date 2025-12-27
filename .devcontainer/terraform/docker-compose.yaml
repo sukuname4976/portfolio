@@ -1,5 +1,5 @@
 services:
-  terraform-workplace-devcontainer:
+  terraform-workspace-devcontainer:
     build:
       context: .
       dockerfile: Dockerfile

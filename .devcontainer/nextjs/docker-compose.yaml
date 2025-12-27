@@ -1,5 +1,5 @@
 services:
-  nextjs-workplace-devcontainer:
+  nextjs-workspace-devcontainer:
     build:
       context: .
       dockerfile: Dockerfile

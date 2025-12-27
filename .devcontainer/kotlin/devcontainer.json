@@ -1,7 +1,7 @@
 {
   "name": "Kotlin Devcontainer",
   "dockerComposeFile": "docker-compose.yaml",
-  "service": "kotlin-workplace-devcontainer",
+  "service": "kotlin-workspace-devcontainer",
   "workspaceFolder": "/monorepo-root-as-kotlin-workspace",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},

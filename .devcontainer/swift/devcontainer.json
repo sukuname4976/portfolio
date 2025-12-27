@@ -1,7 +1,7 @@
 {
   "name": "Swift Devcontainer",
   "dockerComposeFile": "docker-compose.yaml",
-  "service": "swift-workplace-devcontainer",
+  "service": "swift-workspace-devcontainer",
   "workspaceFolder": "/monorepo-root-as-swift-workspace",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},

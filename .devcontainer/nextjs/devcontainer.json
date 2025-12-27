@@ -1,7 +1,7 @@
 {
   "name": "Next.js Devcontainer",
   "dockerComposeFile": "docker-compose.yaml",
-  "service": "nextjs-workplace-devcontainer",
+  "service": "nextjs-workspace-devcontainer",
   "workspaceFolder": "/monorepo-root-as-nextjs-workspace",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},

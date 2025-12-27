@@ -1,7 +1,7 @@
 {
   "name": "Go Devcontainer",
   "dockerComposeFile": "docker-compose.yaml",
-  "service": "go-workplace-devcontainer",
+  "service": "go-workspace-devcontainer",
   "workspaceFolder": "/monorepo-root-as-go-workspace",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},

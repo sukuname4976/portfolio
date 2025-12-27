@@ -1,5 +1,5 @@
 services:
-  swift-workplace-devcontainer:
+  swift-workspace-devcontainer:
     build:
       context: .
       dockerfile: Dockerfile

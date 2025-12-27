@@ -1,7 +1,7 @@
 {
   "name": "Python Devcontainer",
   "dockerComposeFile": "docker-compose.yaml",
-  "service": "python-workplace-devcontainer",
+  "service": "python-workspace-devcontainer",
   "workspaceFolder": "/monorepo-root-as-python-workspace",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},

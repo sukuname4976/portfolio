@@ -1,5 +1,5 @@
 services:
-  go-workplace-devcontainer:
+  go-workspace-devcontainer:
     build:
       context: .
       dockerfile: Dockerfile
