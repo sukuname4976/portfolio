@@ -18,4 +18,3 @@ Go製のBFF（Backend for Frontend）サービス。
 
 - `main.go` - エントリーポイント
 - `IF/` - インターフェース定義（OpenAPI）
-
