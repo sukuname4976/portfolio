@@ -11,14 +11,10 @@
             "id": "26408b8ecff51bce",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "無題のファイル.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "無題のファイル"
+              "title": "新規タブ"
             }
           }
         ]
@@ -182,6 +178,37 @@
   },
   "active": "26408b8ecff51bce",
   "lastOpenFiles": [
+    "project-python-shared/main.md",
+    "project-python-shared",
+    "project-terraform/main.md",
+    "project-terraform",
+    "project-golang-shared/main.md",
+    "project-golang-shared",
+    "project-web/main.md",
+    "project-web",
+    "project-ios/main.md",
+    "project-ios",
+    "project-android/main.md",
+    "project-android",
+    "project-library-python-shared/main.md",
+    "project-library-python-shared",
+    "project-library-golang-shared/main.md",
+    "project-library-golang-shared",
+    "project-infra-terraform/main.md",
+    "project-infra-terraform",
+    "project-client-web/main.md",
+    "project-client-web",
+    "project-client-ios/main.md",
+    "project-client-android/main.md",
+    "project-api-user/main.md",
+    "project-api-bff/main.md",
+    "project-api-agent/main.md",
+    "project-user/main.md",
+    "project-bff/main.md",
+    "project-agent/main.md",
+    "main.md",
+    "repository-main.md",
+    "bff-project/main.md",
     "無題のファイル.md"
   ]
 }
