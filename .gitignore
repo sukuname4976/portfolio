@@ -121,3 +121,6 @@ secrets/
 .nx/cache
 .nx/workspace-data
 
+# Obsidian
+docs-obsidian-vault/.obsidian/workspace.json
+docs-obsidian-vault/.obsidian/workspace-mobile.json
