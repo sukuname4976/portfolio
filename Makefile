@@ -1,36 +1,22 @@
 .PHONY: help install graph show-projects affected-graph
 
-# デフォルトターゲット
 help:
-	@echo "Portfolio Monorepo - Makefile"
-	@echo ""
-	@echo "Available targets:"
-	@echo "  help                      - Show this help message"
-	@echo "  install                   - Install all dependencies"
-	@echo "  graph                     - Show dependency graph in browser"
-	@echo "  show-projects             - List all projects"
-	@echo "  affected-graph            - Show affected projects graph"
-	@echo ""
-	@echo "Note: Project-specific operations should be done in each project directory"
-	@echo "      or using Nx commands (e.g., 'nx build bff', 'nx serve web')"
+	@echo "利用可能なコマンド:"
+	@echo "  make install  - 依存関係をインストール"
+	@echo "  make graph    - 依存グラフを表示"
+	@echo "  make show     - プロジェクト一覧を表示"
+	@echo "  make affected - 影響を受けるプロジェクトを表示"
 
-# 依存関係のインストール
+# npm の依存関係をインストール
 install:
-	@echo "Installing dependencies..."
 	npm install
 
-# 依存関係グラフを表示
+# Nx 関連コマンド
 graph:
-	@echo "Opening dependency graph in browser..."
 	npx nx graph
 
-# プロジェクト一覧を表示
-show-projects:
-	@echo "Listing all projects..."
+show:
 	npx nx show projects
 
-# 影響を受けるプロジェクトのグラフを表示
-affected-graph:
-	@echo "Opening affected projects graph in browser..."
+affected:
 	npx nx affected:graph
-
