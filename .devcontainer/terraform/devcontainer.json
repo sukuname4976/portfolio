@@ -11,18 +11,15 @@
         // 汎用
         "davidanson.vscode-markdownlint",
         "eamodio.gitlens",
-        "editorconfig.editorconfig",
         "exiasr.hadolint",
         "github.vscode-github-actions",
-        "gruntfuggly.todo-tree",
         "mechatroner.rainbow-csv",
         "mhutchie.git-graph",
         "ms-azuretools.vscode-docker",
         "MS-CEINTL.vscode-language-pack-ja",
         "oderwat.indent-rainbow",
         "redhat.vscode-yaml",
-        "streetsidesoftware.code-spell-checker",
-        "usernamehw.errorlens"
+        "streetsidesoftware.code-spell-checker"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -45,5 +42,9 @@
     "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
   },
-  "postCreateCommand": "terraform --version && gh --version && claude --version && echo 'Terraform の開発コンテナが正常に起動しました'"
+  "postCreateCommand": {
+    "gh-extensions": "gh extension install yahsan2/gh-sub-issue",
+    "versions": "terraform --version && gh --version && claude --version",
+    "message": "echo 'Terraform の開発コンテナが起動し、セットアップを実行中...'"
+  }
 }

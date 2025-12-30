@@ -1,0 +1,16 @@
+# iOS
+*.xcworkspace
+*.xcuserdata
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+Pods/
+*.xcuserstate
+
+# Swift
+.build/
+.swiftpm/
+Package.resolved
+

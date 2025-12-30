@@ -18,18 +18,15 @@
         // 汎用
         "davidanson.vscode-markdownlint",
         "eamodio.gitlens",
-        "editorconfig.editorconfig",
         "exiasr.hadolint",
         "github.vscode-github-actions",
-        "gruntfuggly.todo-tree",
         "mechatroner.rainbow-csv",
         "mhutchie.git-graph",
         "ms-azuretools.vscode-docker",
         "MS-CEINTL.vscode-language-pack-ja",
         "oderwat.indent-rainbow",
         "redhat.vscode-yaml",
-        "streetsidesoftware.code-spell-checker",
-        "usernamehw.errorlens"
+        "streetsidesoftware.code-spell-checker"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -42,7 +39,14 @@
       }
     }
   },
-  "postCreateCommand": "uv --version && python --version && gh --version && claude --version && echo 'Python の開発コンテナが正常に起動しました'",
+  "postCreateCommand": {
+    "gh-extensions": "gh extension install yahsan2/gh-sub-issue",
+    "uv-version": "echo '=== uv ===' && uv --version",
+    "python-version": "echo '=== Python ===' && python --version",
+    "gh-version": "echo '=== GitHub CLI ===' && gh --version",
+    "claude-version": "echo '=== Claude Code ===' && claude --version",
+    "message": "echo 'Python の開発コンテナが起動し、セットアップを実行中...'"
+  },
   "forwardPorts": [
     5432,
     8000

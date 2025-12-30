@@ -1,0 +1,75 @@
+name: 📝 子タスク
+description: 小目標を管理する子タスク (1つのPRで完結する作業単位)
+title: "[Child Task: ]"
+labels: ["Child Task"]
+body:
+  - type: textarea
+    id: overview
+    attributes:
+      label: 📋 概要
+      description: 親タスクの内容に対して、この子タスクで行う作業の概要を記述
+      value: 後で書く
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: target-projects
+    attributes:
+      label: 📦 対象プロジェクト
+      description: このタスクで追加・修正の対象となる Nx プロジェクトを選択
+      options:
+        - label: 🤖 apis/agent
+        - label: 🔀 apis/bff
+        - label: 👤 apis/user
+        - label: 📱 clients/android
+        - label: 🍎 clients/ios
+        - label: 🌐 clients/web
+        - label: ☁️ infras/terraform
+        - label: 📚 libraries/golang-shared
+        - label: 🐍 libraries/python-shared
+        - label: ⚡ Nx プロジェクト以外 (CI/CD・Devcontainer 等)
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: task-types
+    attributes:
+      label: 🏷️ タスク種別
+      description: このタスクで行う作業の種別を選択
+      options:
+        - label: 🖥️ フロントエンド開発
+        - label: ⚙️ バックエンド開発
+        - label: 🏗️ インフラ構築
+        - label: 📝 ドキュメント作成
+        - label: 🔧 設定
+        - label: ❓ その他
+    validations:
+      required: true
+
+  - type: textarea
+    id: done-conditions
+    attributes:
+      label: ✅ 子タスク完了条件
+      description: 品質の担保等まで含めた、子タスクの完了条件を明確に定義
+      value: |
+        - [ ] 
+        - [ ] 
+        - [ ]
+    validations:
+      required: true
+
+  - type: input
+    id: parent-task-issue-number
+    attributes:
+      label: 🔗 このタスクに紐付く親タスク
+      description: このタスクに紐付く親タスクのIssue番号
+      placeholder: "#123"
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: 💬 備考
+      description: 関連リンクや、その他特記事項
+      value: 特に無し

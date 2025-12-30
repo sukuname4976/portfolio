@@ -9,54 +9,6 @@ Thumbs.db
 *.swo
 *~
 
-# Node.js
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-.npm
-.yarn/
-.next/
-out/
-dist/
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-.venv
-pip-log.txt
-pip-delete-this-directory.txt
-*.egg-info/
-
-# Go
-bin/
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-*.test
-*.out
-go.work
-go.work.sum
-
-# Build outputs
-build/
-target/
-*.apk
-*.ap_
-*.aab
-*.ipa
-*.dSYM.zip
-*.dSYM
-
 # Environment variables
 .env
 .env.local
@@ -67,49 +19,10 @@ target/
 logs/
 *.log
 
-# Terraform
-.terraform/
-*.tfstate
-*.tfstate.*
-.terraform.lock.hcl
-terraform.tfvars
-*.tfvars
-.terraformrc
-terraform.rc
-
-# Android
-.gradle/
-local.properties
-*.iml
-.idea/
-build/
-.gradle/
-
-# iOS
-*.xcworkspace
-*.xcuserdata
-DerivedData/
-*.hmap
-*.ipa
-*.dSYM.zip
-*.dSYM
-Pods/
-*.xcuserstate
-
-# Swift
-.build/
-.swiftpm/
-Package.resolved
-
 # Temporary files
 tmp/
 temp/
 *.tmp
-
-# Coverage reports
-coverage/
-*.lcov
-.nyc_output/
 
 # Secrets
 secrets/
@@ -120,4 +33,3 @@ secrets/
 # Nx
 .nx/cache
 .nx/workspace-data
-
