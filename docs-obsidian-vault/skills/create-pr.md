@@ -1,51 +1,73 @@
 ---
 name: create-pr
-description: Pull Requestを作成する。関連Issueを紐づけてテンプレートに従って作成し、gh pr createで作成。
+description: Pull Request を作成する。関連 Issue を紐づけてテンプレートに従って作成し、gh pr create で作成。
 ---
 
 # create-pr スキル
 
-Pull Requestを作成する。
+Pull Request を作成する。
 
 ## 手順
 
-1. 関連するIssue番号を確認
+1. 関連する Issue 番号をブランチ名から確認
 2. 変更内容を `git diff main...HEAD` で確認
-3. テンプレートに従ってPR本文を作成
-4. `gh pr create` でPRを作成
+3. PR テンプレートに従って本文を作成
+4. `gh pr create` で PR を作成
 
-## テンプレート
+## 参照テンプレート
 
-```markdown
-## 関連Issue
+`.github/PULL_REQUEST_TEMPLATE.md`
 
-Closes #xxx
-
-## 概要
-
-<!-- このPRで行った変更の概要 -->
-
-## 変更内容
-
-- 変更1
-- 変更2
-
-## テスト
-
-- [ ] ローカルで動作確認済み
-- [ ] テストを追加/更新済み
-
-## スクリーンショット
-
-<!-- UIの変更がある場合 -->
-
-## レビュー観点
-
-<!-- レビュアーに特に見てほしい点 -->
-```
-
-## コマンド例
+## PR 作成実行の全体の例
 
 ```bash
-gh pr create --title "タイトル" --body "本文" --base main
+gh pr create --title "#12 ユーザー認証APIを実装" --body "$(cat <<'EOF'
+# Pull Request
+
+## 📋 変更内容
+
+### 📄 概要
+
+ユーザー認証機能の API エンドポイントを実装した。
+
+### 📂 変更ファイル
+
+- `apis/auth/handler.go` - 認証ハンドラーを追加
+- `apis/auth/service.go` - 認証サービスロジックを実装
+- `apis/auth/repository.go` - ユーザーリポジトリを追加
+- `apis/auth/middleware.go` - JWT 検証ミドルウェアを追加
+
+### ➕ Issue 外の変更
+
+無し
+
+## ✅ 完了条件 (Issue に記載された内容)
+
+- [x] ログインエンドポイント (POST /api/auth/login)
+- [x] ログアウトエンドポイント (POST /api/auth/logout)
+- [x] トークンリフレッシュエンドポイント (POST /api/auth/refresh)
+- [x] JWT ミドルウェアの実装
+
+## 🏷️ タスク種別 (Issue に記載された内容)
+
+- [ ] 🖥️ フロントエンド開発
+- [x] ⚙️ バックエンド開発
+- [ ] 🏗️ インフラ構築
+- [ ] 📝 ドキュメント作成
+- [ ] 🔧 設定
+- [ ] ❓ その他
+
+## 🖼️ スクリーンショット（UI 変更がある場合のみ）
+
+無し
+
+## 🔗 対応する Issue
+
+Closes #12
+
+## 💬 備考
+
+認証トークンの有効期限は環境変数 `JWT_EXPIRY` で設定可能。
+EOF
+)" --base main
 ```
