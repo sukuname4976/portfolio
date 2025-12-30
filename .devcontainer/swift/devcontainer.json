@@ -35,7 +35,13 @@
       }
     }
   },
-  "postCreateCommand": "swift --version && gh --version && claude --version && echo 'Swift の開発コンテナが正常に起動しました'",
+  "postCreateCommand": {
+    "gh-extensions": "gh extension install yahsan2/gh-sub-issue",
+    "swift-version": "echo '=== Swift ===' && swift --version",
+    "gh-version": "echo '=== GitHub CLI ===' && gh --version",
+    "claude-version": "echo '=== Claude Code ===' && claude --version",
+    "message": "echo 'Swift の開発コンテナが起動し、セットアップを実行中...'"
+  },
   "forwardPorts": [
     8000
   ]
