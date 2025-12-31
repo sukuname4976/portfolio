@@ -20,7 +20,7 @@ description: 親 Issue（Epic/Feature）を作成する。テンプレートに�
 ## Issue 作成実行の全体の例
 
 ```bash
-gh issue create --title "[Parent Task: ユーザー認証機能を実装]" --label "Parent Task" --body "$(cat <<'EOF'
+gh issue create --title "[Parent Task]: ユーザー認証機能を実装" --label "Parent Task" --body "$(cat <<'EOF'
 ## 📋 概要
 
 ユーザーがログイン・ログアウトできる認証機能を実装する。
