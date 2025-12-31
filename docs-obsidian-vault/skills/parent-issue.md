@@ -1,9 +1,9 @@
 ---
-name: create-parent-issue
+name: parent-issue
 description: 親 Issue（Epic/Feature）を作成する。テンプレートに従って Issue 本文を作成し、gh issue create で作成。
 ---
 
-# create-parent-issue スキル
+# parent-issue スキル
 
 親 Issue（Epic/Feature）を作成する。
 

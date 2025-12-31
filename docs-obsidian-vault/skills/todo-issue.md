@@ -1,9 +1,9 @@
 ---
-name: create-todo-issue
+name: todo-issue
 description: シンプルな todo Issue を作成する。フォーマット指定なし、gh issue create で作成。
 ---
 
-# create-todo-issue スキル
+# todo-issue スキル
 
 シンプルな todo Issue を作成する。
 

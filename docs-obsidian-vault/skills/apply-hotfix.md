@@ -1,9 +1,9 @@
 ---
-name: create-hotfix
+name: apply-hotfix
 description: hotfix を一括で実行する。Issue 作成 → 修正実装 → コミット → PR 作成まで自動化。
 ---
 
-# create-hotfix スキル
+# apply-hotfix スキル
 
 hotfix を一括で実行する。Issue 作成から PR 作成まで自動化。
 
@@ -13,7 +13,7 @@ hotfix を一括で実行する。Issue 作成から PR 作成まで自動化。
 2. `gh issue create` で hotfix Issue を作成
 3. Issue 番号を取得し `hotfix/{issue番号}` ブランチを作成
 4. AI が修正を実装
-5. `git-commit` スキルを呼び出してコミット
+5. `commit` スキルを呼び出してコミット
 6. `create-pr` スキルを呼び出して PR 作成（`Closes #{issue番号}`）
 
 ## Issue 作成実行の例
@@ -43,6 +43,6 @@ git checkout -b hotfix/42
 ```text
 [ヒアリング] → [Issue作成] → [ブランチ作成] → [修正実装] → [コミット] → [PR作成]
                    ↓              ↓              ↓            ↓           ↓
-              hotfix ラベル  hotfix/{番号}    AI が実装   git-commit   create-pr
+              hotfix ラベル  hotfix/{番号}    AI が実装   commit     create-pr
                                                            スキル      スキル
 ```

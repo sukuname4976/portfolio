@@ -1,9 +1,9 @@
 ---
-name: git-commit
+name: commit
 description: 現在の diff を確認してコミットメッセージを作成し、コミットを実行する。Conventional Commits 形式を使用。
 ---
 
-# git-commit スキル
+# commit スキル
 
 現在の diff を確認してコミットメッセージを作成し、コミットを実行する。
 
