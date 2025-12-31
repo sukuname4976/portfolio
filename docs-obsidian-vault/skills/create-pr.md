@@ -9,10 +9,11 @@ Pull Request を作成する。
 
 ## 手順
 
-1. 関連する Issue 番号をブランチ名から確認
-2. 変更内容を `git diff main...HEAD` で確認
-3. PR テンプレートに従って本文を作成
-4. `gh pr create` で PR を作成
+1. 関連する Issue 番号をブランチ名から取得
+2. 関連する Issue の内容とラベルを確認
+3. 変更内容を `git diff main...HEAD` で確認
+4. PR テンプレートに従って本文を作成
+5. `gh pr create` で PR を作成（Issue と同じラベルを付与）
 
 ## 参照テンプレート
 
@@ -69,5 +70,5 @@ Closes #12
 
 認証トークンの有効期限は環境変数 `JWT_EXPIRY` で設定可能。
 EOF
-)" --base main
+)" --label "Child Task" --base main
 ```
