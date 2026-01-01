@@ -8,13 +8,20 @@ servers:
     description: Local development server
 paths:
   /:
-    get:
-      summary: Health check
-      responses:
-        '200':
-          description: Service is running
-          content:
-            text/plain:
-              schema:
-                type: string
-
+    $ref: "paths/health.yaml"
+  /echo:
+    $ref: "paths/echo.yaml"
+components:
+  schemas:
+    EchoRequest:
+      $ref: "components/schemas/echo.yaml#/EchoRequest"
+    EchoResponse:
+      $ref: "components/schemas/echo.yaml#/EchoResponse"
+    EchoData:
+      $ref: "components/schemas/echo.yaml#/EchoData"
+    PokemonData:
+      $ref: "components/schemas/pokemon.yaml#/PokemonData"
+    TypeData:
+      $ref: "components/schemas/pokemon.yaml#/TypeData"
+    ErrorResponse:
+      $ref: "components/schemas/error.yaml#/ErrorResponse"
