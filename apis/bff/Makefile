@@ -3,7 +3,7 @@
 # ogenでOpenAPIからコード生成
 generate:
 	ogen -config .ogen.yaml \
-		-target presentation/auto-generated-by-ogen \
+		-target src/presentation/auto-generated-by-ogen \
 		-package ogen \
 		-clean \
 		IF/openapi.yaml
@@ -15,4 +15,4 @@ build:
 # クリーン
 clean:
 	rm -rf bin/
-	rm -rf presentation/auto-generated-by-ogen/
+	rm -rf src/presentation/auto-generated-by-ogen/

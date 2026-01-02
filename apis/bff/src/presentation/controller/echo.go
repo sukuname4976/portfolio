@@ -4,12 +4,12 @@ import (
 	"context"
 	"strings"
 
-	inputdto "github.com/sukuname4976/portfolio/apis/bff/application/input-dto"
-	"github.com/sukuname4976/portfolio/apis/bff/application/usecase"
-	pokemonservice "github.com/sukuname4976/portfolio/apis/bff/domain/service/pokemon"
-	"github.com/sukuname4976/portfolio/apis/bff/infrastructure/config"
-	"github.com/sukuname4976/portfolio/apis/bff/infrastructure/gateway"
-	ogen "github.com/sukuname4976/portfolio/apis/bff/presentation/auto-generated-by-ogen"
+	inputdto "github.com/sukuname4976/portfolio/apis/bff/src/application/input-dto"
+	"github.com/sukuname4976/portfolio/apis/bff/src/application/usecase"
+	pokemonservice "github.com/sukuname4976/portfolio/apis/bff/src/domain/service/pokemon"
+	"github.com/sukuname4976/portfolio/apis/bff/src/infrastructure/config"
+	"github.com/sukuname4976/portfolio/apis/bff/src/infrastructure/gateway"
+	ogen "github.com/sukuname4976/portfolio/apis/bff/src/presentation/auto-generated-by-ogen"
 )
 
 // Handler ogenのHandlerインターフェースを実装

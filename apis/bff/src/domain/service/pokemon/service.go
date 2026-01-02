@@ -4,7 +4,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/sukuname4976/portfolio/apis/bff/domain/value-objects/pokemonid"
+	"github.com/sukuname4976/portfolio/apis/bff/src/domain/value-objects/pokemonid"
 )
 
 // Service ポケモン取得のドメインサービス

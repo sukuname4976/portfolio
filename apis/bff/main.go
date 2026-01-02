@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/sukuname4976/portfolio/apis/bff/infrastructure/config"
-	ogen "github.com/sukuname4976/portfolio/apis/bff/presentation/auto-generated-by-ogen"
-	"github.com/sukuname4976/portfolio/apis/bff/presentation/controller"
-	"github.com/sukuname4976/portfolio/apis/bff/presentation/middleware"
+	"github.com/sukuname4976/portfolio/apis/bff/src/infrastructure/config"
+	ogen "github.com/sukuname4976/portfolio/apis/bff/src/presentation/auto-generated-by-ogen"
+	"github.com/sukuname4976/portfolio/apis/bff/src/presentation/controller"
+	"github.com/sukuname4976/portfolio/apis/bff/src/presentation/middleware"
 )
 
 func main() {

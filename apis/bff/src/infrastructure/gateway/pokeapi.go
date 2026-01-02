@@ -7,10 +7,14 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/sukuname4976/portfolio/apis/bff/domain/entities/pokemon"
-	"github.com/sukuname4976/portfolio/apis/bff/domain/value-objects/pokemonid"
-	"github.com/sukuname4976/portfolio/apis/bff/domain/value-objects/pokemontype"
+	"github.com/sukuname4976/portfolio/apis/bff/src/domain/entities/pokemon"
+	pokemongateway "github.com/sukuname4976/portfolio/apis/bff/src/domain/gateway-interfaces/pokemon"
+	"github.com/sukuname4976/portfolio/apis/bff/src/domain/value-objects/pokemonid"
+	"github.com/sukuname4976/portfolio/apis/bff/src/domain/value-objects/pokemontype"
 )
+
+// コンパイル時にインターフェース実装を検証
+var _ pokemongateway.Gateway = (*PokeAPIGateway)(nil)
 
 // pokeAPIResponse PokeAPIのレスポンス構造体
 type pokeAPIResponse struct {

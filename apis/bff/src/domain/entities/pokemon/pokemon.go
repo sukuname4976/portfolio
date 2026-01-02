@@ -1,8 +1,8 @@
 package pokemon
 
 import (
-	"github.com/sukuname4976/portfolio/apis/bff/domain/value-objects/pokemonid"
-	"github.com/sukuname4976/portfolio/apis/bff/domain/value-objects/pokemontype"
+	"github.com/sukuname4976/portfolio/apis/bff/src/domain/value-objects/pokemonid"
+	"github.com/sukuname4976/portfolio/apis/bff/src/domain/value-objects/pokemontype"
 )
 
 // Pokemon ポケモン情報を表すエンティティ

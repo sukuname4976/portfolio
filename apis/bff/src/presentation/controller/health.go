@@ -4,7 +4,7 @@ import (
 	"context"
 	"strings"
 
-	ogen "github.com/sukuname4976/portfolio/apis/bff/presentation/auto-generated-by-ogen"
+	ogen "github.com/sukuname4976/portfolio/apis/bff/src/presentation/auto-generated-by-ogen"
 )
 
 // HealthCheck GET / を処理
