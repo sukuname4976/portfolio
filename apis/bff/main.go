@@ -1,32 +1,43 @@
 package main
 
 import (
-	"log"
+	"log/slog"
 	"net/http"
+	"os"
 
 	"github.com/sukuname4976/portfolio/apis/bff/infrastructure/config"
+	ogen "github.com/sukuname4976/portfolio/apis/bff/presentation/auto-generated-by-ogen"
+	"github.com/sukuname4976/portfolio/apis/bff/presentation/controller"
 	"github.com/sukuname4976/portfolio/apis/bff/presentation/middleware"
-	"github.com/sukuname4976/portfolio/apis/bff/presentation/router"
 )
 
 func main() {
-	// 1. 設定の読み込み
+	// 1. slog初期設定（JSON形式）
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
+		Level: slog.LevelInfo,
+	}))
+	slog.SetDefault(logger)
+
+	// 2. 設定の読み込み
 	cfg := config.Load()
 
-	// 2. ルーティング設定
-	mux := http.NewServeMux()
-	router.Setup(mux, cfg)
+	// 3. ogenサーバーの構築
+	handler := controller.NewHandler(cfg)
+	server, err := ogen.NewServer(handler)
+	if err != nil {
+		slog.Error("failed to create server", "error", err)
+		os.Exit(1)
+	}
 
-	// 3. ミドルウェアチェーンの構築
-	handler := middleware.Recovery(
-		middleware.Logging(
-			middleware.JSON(mux),
-		),
+	// 4. ミドルウェアチェーンの構築
+	httpHandler := middleware.Recovery(
+		middleware.Logging(server),
 	)
 
-	// 4. サーバー起動
-	log.Printf("BFF Service starting on port %s", cfg.Port)
-	if err := http.ListenAndServe(":"+cfg.Port, handler); err != nil {
-		log.Fatal(err)
+	// 5. サーバー起動
+	slog.Info("server starting", "port", cfg.Port)
+	if err := http.ListenAndServe(":"+cfg.Port, httpHandler); err != nil {
+		slog.Error("server failed", "error", err)
+		os.Exit(1)
 	}
 }
