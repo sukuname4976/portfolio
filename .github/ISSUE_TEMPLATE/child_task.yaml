@@ -1,6 +1,6 @@
 name: 📝 子タスク
 description: 小目標を管理する子タスク (1つのPRで完結する作業単位)
-title: "[Child Task: ]"
+title: "[Child Task]: "
 labels: ["Child Task"]
 body:
   - type: textarea

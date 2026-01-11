@@ -1,0 +1,13 @@
+services:
+  bff:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    image: bff:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - RUN_ENV=production
+      - PORT=8000
+    restart: unless-stopped
