@@ -54,10 +54,10 @@ format:
 format-check:
 	@test -z "$$(goimports -l .)" || (echo "以下のファイルのフォーマットまたはインポートが不正です:" && goimports -l . && exit 1)
 
-# CI チェック (build + test + lint + format-check)
-check: build test lint format-check
+# CI チェック (build + test + lint-check + format-check)
+check: build test lint-check format-check
 
-# 作業時の前処理　　(build + test + lint + format + gen-ogen + gen-mock)
+# コミット前の品質担保処理　　(build + test + lint + format + gen-ogen + gen-mock)
 prepare: build test lint format gen-ogen gen-mock
 
 # 自動生成ファイルの削除
