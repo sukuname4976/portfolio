@@ -33,7 +33,9 @@ func Recovery(next http.Handler) http.Handler {
 				w.WriteHeader(http.StatusInternalServerError)
 
 				response := map[string]string{"error": "internal server error"}
-				json.NewEncoder(w).Encode(response)
+				if encodeErr := json.NewEncoder(w).Encode(response); encodeErr != nil {
+					slog.Error("failed to encode error response", "error", encodeErr)
+				}
 			}
 		}()
 

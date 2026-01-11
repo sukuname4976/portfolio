@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: 変更を検出したプロジェクトへのCIの実行
+    runs-on: ubuntu-latest
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Node.js セットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Docker Buildx セットアップ
+        uses: docker/setup-buildx-action@v3
+
+      - name: npm install で Nx をインストール
+        run: npm ci
+
+      - name: 差分検出用の SHA 設定
+        uses: nrwl/nx-set-shas@v4
+
+      - name: 変更を検出したプロジェクトで make check を実行して品質チェック
+        run: npx nx affected -t check --parallel=3
+        env:
+          DOCKER_BUILDKIT: 1

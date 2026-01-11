@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"time"
 
@@ -17,6 +18,24 @@ const (
 	RunEnvProduction  RunEnv = "production"
 )
 
+// ParseRunEnv 文字列からRunEnvをパース
+func ParseRunEnv(s string) (RunEnv, error) {
+	switch RunEnv(s) {
+	case RunEnvLocal:
+		return RunEnvLocal, nil
+	case RunEnvTest:
+		return RunEnvTest, nil
+	case RunEnvDevelopment:
+		return RunEnvDevelopment, nil
+	case RunEnvProduction:
+		return RunEnvProduction, nil
+	case "":
+		return RunEnvLocal, nil
+	default:
+		return "", fmt.Errorf("invalid RUN_ENV: %q", s)
+	}
+}
+
 // Config アプリケーション設定
 type Config struct {
 	RunEnv         RunEnv
@@ -26,10 +45,10 @@ type Config struct {
 }
 
 // Load 実行環境に応じて設定を読み込み
-func Load() *Config {
-	runEnv := RunEnv(os.Getenv("RUN_ENV"))
-	if runEnv == "" {
-		runEnv = RunEnvLocal
+func Load() (*Config, error) {
+	runEnv, err := ParseRunEnv(os.Getenv("RUN_ENV"))
+	if err != nil {
+		return nil, err
 	}
 
 	// 環境に応じた設定ソースから読み込み
@@ -44,10 +63,10 @@ func Load() *Config {
 
 	return &Config{
 		RunEnv:         runEnv,
-		Port:           getEnvOrDefault("PORT", "8080"),
+		Port:           getEnvOrDefault("PORT", "8000"),
 		PokeAPIBaseURL: getEnvOrDefault("POKEAPI_BASE_URL", "https://pokeapi.co/api/v2"),
 		HTTPTimeout:    10 * time.Second,
-	}
+	}, nil
 }
 
 // getEnvOrDefault 環境変数を取得、なければデフォルト値を返す
