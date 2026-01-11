@@ -4,7 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+  workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -12,7 +14,7 @@ concurrency:
 
 jobs:
   check:
-    name: 変更を検出したプロジェクトへのCIの実行
+    name: 変更を検出したプロジェクトへのCI
     runs-on: ubuntu-latest
     steps:
       - name: チェックアウト
