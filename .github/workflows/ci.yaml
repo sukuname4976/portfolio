@@ -37,6 +37,9 @@ jobs:
       - name: 差分検出用の SHA 設定
         uses: nrwl/nx-set-shas@v4
 
+      - name: 変更を検出したプロジェクトを表示
+        run: npx nx show projects --affected
+
       - name: 変更を検出したプロジェクトで make check を実行して品質チェック
         run: npx nx affected -t check --parallel=3
         env:
