@@ -12,7 +12,7 @@ type Handler interface {
 	//
 	// Echo message with Pokemon info.
 	//
-	// POST /echo
+	// POST /api/v1/echo
 	Echo(ctx context.Context, req *EchoRequest) (EchoRes, error)
 	// HealthCheck implements healthCheck operation.
 	//

@@ -17,7 +17,7 @@ var _ Handler = UnimplementedHandler{}
 //
 // Echo message with Pokemon info.
 //
-// POST /echo
+// POST /api/v1/echo
 func (UnimplementedHandler) Echo(ctx context.Context, req *EchoRequest) (r EchoRes, _ error) {
 	return r, ht.ErrNotImplemented
 }

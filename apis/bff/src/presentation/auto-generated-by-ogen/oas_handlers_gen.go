@@ -37,14 +37,14 @@ func (c *codeRecorder) Unwrap() http.ResponseWriter {
 //
 // Echo message with Pokemon info.
 //
-// POST /echo
+// POST /api/v1/echo
 func (s *Server) handleEchoRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
 	statusWriter := &codeRecorder{ResponseWriter: w}
 	w = statusWriter
 	otelAttrs := []attribute.KeyValue{
 		otelogen.OperationID("echo"),
 		semconv.HTTPRequestMethodKey.String("POST"),
-		semconv.HTTPRouteKey.String("/echo"),
+		semconv.HTTPRouteKey.String("/api/v1/echo"),
 	}
 
 	// Start a span for this request.

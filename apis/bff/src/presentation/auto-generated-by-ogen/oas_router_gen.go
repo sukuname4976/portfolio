@@ -67,9 +67,9 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 			switch elem[0] {
-			case 'e': // Prefix: "echo"
+			case 'a': // Prefix: "api/v1/echo"
 
-				if l := len("echo"); len(elem) >= l && elem[0:l] == "echo" {
+				if l := len("api/v1/echo"); len(elem) >= l && elem[0:l] == "api/v1/echo" {
 					elem = elem[l:]
 				} else {
 					break
@@ -199,9 +199,9 @@ func (s *Server) FindPath(method string, u *url.URL) (r Route, _ bool) {
 				}
 			}
 			switch elem[0] {
-			case 'e': // Prefix: "echo"
+			case 'a': // Prefix: "api/v1/echo"
 
-				if l := len("echo"); len(elem) >= l && elem[0:l] == "echo" {
+				if l := len("api/v1/echo"); len(elem) >= l && elem[0:l] == "api/v1/echo" {
 					elem = elem[l:]
 				} else {
 					break
@@ -215,7 +215,7 @@ func (s *Server) FindPath(method string, u *url.URL) (r Route, _ bool) {
 						r.summary = "Echo message with Pokemon info"
 						r.operationID = "echo"
 						r.operationGroup = ""
-						r.pathPattern = "/echo"
+						r.pathPattern = "/api/v1/echo"
 						r.args = args
 						r.count = 0
 						return r, true

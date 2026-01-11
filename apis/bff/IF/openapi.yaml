@@ -9,7 +9,7 @@ servers:
 paths:
   /:
     $ref: "paths/health.yaml"
-  /echo:
+  /api/v1/echo:
     $ref: "paths/echo.yaml"
 components:
   schemas:
