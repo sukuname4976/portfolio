@@ -1,0 +1,28 @@
+EchoRequest:
+  type: object
+  required:
+    - message
+  properties:
+    message:
+      type: string
+      description: Message to echo
+
+EchoResponse:
+  type: object
+  required:
+    - echo
+    - pokemon
+  properties:
+    echo:
+      $ref: "#/EchoData"
+    pokemon:
+      $ref: "pokemon.yaml#/PokemonData"
+
+EchoData:
+  type: object
+  required:
+    - message
+  properties:
+    message:
+      type: string
+      description: Echoed message

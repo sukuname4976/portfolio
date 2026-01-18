@@ -1,6 +1,6 @@
 name: 🎯 親タスク
 description: 大目標を管理する親タスク (Projectsで進捗管理する単位)
-title: "[Parent Task: ]"
+title: "[Parent Task]: "
 labels: ["Parent Task"]
 body:
   - type: textarea

@@ -1,7 +1,10 @@
-FROM mcr.microsoft.com/devcontainers/go:1.21
+FROM mcr.microsoft.com/devcontainers/go:1.25
 
-# 追加のGoツールをインストール（必要に応じて）
-# RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+RUN go install github.com/ogen-go/ogen/cmd/ogen@latest \
+    && go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest \
+    && go install github.com/air-verse/air@latest \
+    && go install golang.org/x/tools/cmd/goimports@latest \
+    && chmod -R g+w /go/pkg/
 
 RUN apt-get update && apt-get install -y \
     curl \

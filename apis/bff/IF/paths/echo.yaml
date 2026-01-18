@@ -1,0 +1,28 @@
+post:
+  summary: Echo message with Pokemon info
+  operationId: echo
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../components/schemas/echo.yaml#/EchoRequest"
+  responses:
+    "200":
+      description: Successful response
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/echo.yaml#/EchoResponse"
+    "400":
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/error.yaml#/ErrorResponse"
+    "500":
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: "../components/schemas/error.yaml#/ErrorResponse"

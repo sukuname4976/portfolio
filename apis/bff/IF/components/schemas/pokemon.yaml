@@ -1,0 +1,35 @@
+PokemonData:
+  type: object
+  required:
+    - id
+    - name
+    - types
+    - sprite
+  properties:
+    id:
+      type: integer
+      description: Pokemon ID
+    name:
+      type: string
+      description: Pokemon name
+    types:
+      type: array
+      items:
+        $ref: "#/TypeData"
+      description: Pokemon types
+    sprite:
+      type: string
+      description: Pokemon sprite URL
+
+TypeData:
+  type: object
+  required:
+    - slot
+    - name
+  properties:
+    slot:
+      type: integer
+      description: Type slot number
+    name:
+      type: string
+      description: Type name

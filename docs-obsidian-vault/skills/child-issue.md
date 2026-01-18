@@ -22,7 +22,7 @@ description: 子 Issue（Task）を作成する。親 Issue に紐づけてテ�
 ## Issue 作成実行の全体の例
 
 ```bash
-gh issue create --title "[Child Task: ログインAPIを実装]" --label "Child Task" --body "$(cat <<'EOF'
+gh issue create --title "[Child Task]: ログインAPIを実装" --label "Child Task" --body "$(cat <<'EOF'
 ## 📋 概要
 
 ユーザー認証機能のログイン API エンドポイントを実装する。

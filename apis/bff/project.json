@@ -34,14 +34,14 @@
       "options": {
         "command": "go run ./apis/bff",
         "env": {
-          "PORT": "8080"
+          "PORT": "8000"
         }
       }
     },
-    "test": {
+    "check": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "go test ./apis/bff/..."
+        "command": "docker compose -f apis/bff/docker-compose.ci.yaml run --rm ci"
       }
     }
   }
