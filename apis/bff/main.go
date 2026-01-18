@@ -27,7 +27,10 @@ func main() {
 
 	// 3. ogenサーバーの構築
 	handler := controller.NewHandler(cfg)
-	server, err := ogen.NewServer(handler)
+	server, err := ogen.NewServer(
+		handler,
+		ogen.WithErrorHandler(middleware.HandleDecodeFailures),
+	)
 	if err != nil {
 		slog.Error("failed to create server", "error", err)
 		os.Exit(1)

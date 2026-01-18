@@ -8,8 +8,10 @@ import (
 	"github.com/sukuname4976/portfolio/apis/bff/src/application/usecase"
 	pokemonservice "github.com/sukuname4976/portfolio/apis/bff/src/domain/service/pokemon"
 	"github.com/sukuname4976/portfolio/apis/bff/src/infrastructure/config"
+	apperrors "github.com/sukuname4976/portfolio/apis/bff/src/infrastructure/errors"
 	"github.com/sukuname4976/portfolio/apis/bff/src/infrastructure/gateway"
 	ogen "github.com/sukuname4976/portfolio/apis/bff/src/presentation/auto-generated-by-ogen"
+	"github.com/sukuname4976/portfolio/apis/bff/src/presentation/middleware"
 )
 
 // Handler ogenのHandlerインターフェースを実装
@@ -35,8 +37,10 @@ func newEchoUseCase(cfg *config.Config) usecase.EchoUseCase {
 func (h *Handler) Echo(ctx context.Context, req *ogen.EchoRequest) (ogen.EchoRes, error) {
 	// バリデーション
 	if strings.TrimSpace(req.Message) == "" {
+		appErr := apperrors.NewEchoValidationError("message is required", "empty message received")
+		middleware.LogError(appErr)
 		return &ogen.EchoBadRequest{
-			Error: "message is required",
+			Error: appErr.ExternalErrorMessage,
 		}, nil
 	}
 
@@ -46,8 +50,10 @@ func (h *Handler) Echo(ctx context.Context, req *ogen.EchoRequest) (ogen.EchoRes
 	}
 	output, err := h.echoUseCase.Execute(ctx, input)
 	if err != nil {
+		appErr := apperrors.NewPokemonGatewayError(err.Error())
+		middleware.LogError(appErr)
 		return &ogen.EchoInternalServerError{
-			Error: err.Error(),
+			Error: appErr.ExternalErrorMessage,
 		}, nil
 	}
 
