@@ -1,2 +1,2 @@
 <!-- markdownlint-disable -->
-@../../docs-obsidian-vault/project-library-python-shared/main.md
+@../../docs-obsidian-vault/projects/library-python-shared/agents-base.md

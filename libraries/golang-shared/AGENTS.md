@@ -1,2 +1,2 @@
 <!-- markdownlint-disable -->
-@../../docs-obsidian-vault/project-library-golang-shared/main.md
+@../../docs-obsidian-vault/projects/library-golang-shared/agents-base.md

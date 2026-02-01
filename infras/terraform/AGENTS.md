@@ -1,2 +1,2 @@
 <!-- markdownlint-disable -->
-@../../docs-obsidian-vault/project-infra-terraform/main.md
+@../../docs-obsidian-vault/projects/infra-terraform/agents-base.md
