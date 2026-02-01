@@ -1,2 +1,2 @@
 <!-- markdownlint-disable -->
-@../../docs-obsidian-vault/project-api-agent/main.md
+@../../docs-obsidian-vault/projects/api-agent/agents-base.md

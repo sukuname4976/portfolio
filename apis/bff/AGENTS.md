@@ -1,2 +1,2 @@
 <!-- markdownlint-disable -->
-@../../docs-obsidian-vault/project-api-bff/main.md
+@../../docs-obsidian-vault/projects/api-bff/agents-base.md

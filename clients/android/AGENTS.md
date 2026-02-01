@@ -1,2 +1,2 @@
 <!-- markdownlint-disable -->
-@../../docs-obsidian-vault/project-client-android/main.md
+@../../docs-obsidian-vault/projects/client-android/agents-base.md
