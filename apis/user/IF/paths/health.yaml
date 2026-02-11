@@ -1,0 +1,10 @@
+get:
+  summary: Health check
+  operationId: healthCheck
+  responses:
+    "200":
+      description: Service is running
+      content:
+        text/plain:
+          schema:
+            type: string

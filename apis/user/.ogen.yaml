@@ -1,0 +1,7 @@
+parser:
+  allow_remote: true
+
+generator:
+  features:
+    disable:
+      - paths/client
