@@ -1,0 +1,13 @@
+services:
+  user:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    image: user:latest
+    ports:
+      - "8081:8081"
+    environment:
+      - RUN_ENV=production
+      - PORT=8081
+    restart: unless-stopped
