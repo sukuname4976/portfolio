@@ -1,25 +1,50 @@
 package main
 
 import (
-	"fmt"
-	"log"
+	"log/slog"
 	"net/http"
 	"os"
+
+	"github.com/sukuname4976/portfolio/apis/user/src/infrastructure/config"
+	ogen "github.com/sukuname4976/portfolio/apis/user/src/presentation/auto-generated-by-ogen"
+	"github.com/sukuname4976/portfolio/apis/user/src/presentation/controller"
+	"github.com/sukuname4976/portfolio/apis/user/src/presentation/middleware"
 )
 
 func main() {
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8081"
+	// 1. slog初期設定（JSON形式）
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
+		Level: slog.LevelInfo,
+	}))
+	slog.SetDefault(logger)
+
+	// 2. 設定の読み込み
+	cfg, err := config.Load()
+	if err != nil {
+		slog.Error("failed to load config", "error", err)
+		os.Exit(1)
 	}
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "User Service is running on port %s\n", port)
-	})
+	// 3. ogenサーバーの構築
+	handler := controller.NewHandler(cfg)
+	server, err := ogen.NewServer(
+		handler,
+		ogen.WithErrorHandler(middleware.HandleDecodeFailures),
+	)
+	if err != nil {
+		slog.Error("failed to create server", "error", err)
+		os.Exit(1)
+	}
 
-	log.Printf("User Service starting on port %s", port)
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
-		log.Fatal(err)
+	// 4. ミドルウェアチェーンの構築
+	httpHandler := middleware.Recovery(
+		middleware.Logging(server),
+	)
+
+	// 5. サーバー起動
+	slog.Info("server starting", "port", cfg.Port)
+	if err := http.ListenAndServe(":"+cfg.Port, httpHandler); err != nil {
+		slog.Error("server failed", "error", err)
+		os.Exit(1)
 	}
 }
-

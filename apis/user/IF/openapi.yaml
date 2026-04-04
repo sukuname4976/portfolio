@@ -8,13 +8,14 @@ servers:
     description: Local development server
 paths:
   /:
-    get:
-      summary: Health check
-      responses:
-        '200':
-          description: Service is running
-          content:
-            text/plain:
-              schema:
-                type: string
-
+    $ref: "paths/health.yaml"
+  /api/v1/users/{id}:
+    $ref: "paths/user.yaml"
+components:
+  schemas:
+    UserResponse:
+      $ref: "components/schemas/user.yaml#/UserResponse"
+    UserData:
+      $ref: "components/schemas/user.yaml#/UserData"
+    ErrorResponse:
+      $ref: "components/schemas/error.yaml#/ErrorResponse"

@@ -1,0 +1,25 @@
+UserResponse:
+  type: object
+  required:
+    - user
+  properties:
+    user:
+      $ref: "#/UserData"
+
+UserData:
+  type: object
+  required:
+    - id
+    - name
+    - email
+  properties:
+    id:
+      type: string
+      description: User ID
+    name:
+      type: string
+      description: User name
+    email:
+      type: string
+      format: email
+      description: User email address

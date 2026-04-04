@@ -1,0 +1,10 @@
+services:
+  ci:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: ci
+      cache_from:
+        - type=gha
+      cache_to:
+        - type=gha,mode=max
