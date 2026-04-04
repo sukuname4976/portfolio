@@ -33,8 +33,14 @@ func (u *getUserUseCase) Execute(ctx context.Context, input inputdto.GetUserInpu
 	}
 
 	// ダミーユーザーを生成
-	id, _ := userid.New(dummyUserID)
-	mail, _ := email.New("tanaka@example.com")
+	id, err := userid.New(dummyUserID)
+	if err != nil {
+		panic("invalid dummy user ID: " + err.Error())
+	}
+	mail, err := email.New("tanaka@example.com")
+	if err != nil {
+		panic("invalid dummy email: " + err.Error())
+	}
 	dummyUser := user.New(id, "田中 太郎", mail)
 
 	return u.toOutput(dummyUser), nil
