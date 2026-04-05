@@ -48,3 +48,14 @@ portfolio/
     ├── golang-shared/                  # Go共通ライブラリ
     └── python-shared/                  # Python共通ライブラリ
 ```
+
+## リポジトリルートでの共通化
+
+本来monorepoの各プロジェクトは外部に依存せず独立して動作するのが理想ですが、個人開発の効率化のためリポジトリルートで以下を共通化しています。
+
+- Nx（monorepo管理、依存関係グラフ、差分検出）
+- markdownlint-cli2（Markdownのリンティング）
+- husky（pre-commitフック）
+- GitHub Actions CI/CD
+- DevContainer（各言語の開発環境）
+- docs-obsidian-vault（プロンプト・ドキュメントの統括管理）

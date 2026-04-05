@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@nx/workspace": "^17.0.0",
+    "markdownlint-cli2": "^0.22.0",
     "nx": "^17.0.0"
   },
   "engines": {

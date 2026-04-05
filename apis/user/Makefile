@@ -1,4 +1,4 @@
-.PHONY: up dev gen-ogen gen-mock build test lint format format-check check prepare clean
+.PHONY: up dev gen-ogen gen-mock build test lint format format-check markdownlint check prepare clean
 
 # サーバー起動 （本番同等のバイナリ実行）
 up:
@@ -54,11 +54,15 @@ format:
 format-check:
 	@test -z "$$(goimports -l .)" || (echo "以下のファイルのフォーマットまたはインポートが不正です:" && goimports -l . && exit 1)
 
-# CI チェック (build + test + lint-check + format-check)
-check: build test lint-check format-check
+# Markdown Lint 実行
+markdownlint:
+	npx markdownlint-cli2 "**/*.md"
 
-# コミット前の品質担保処理　　(build + test + lint + format + gen-ogen + gen-mock)
-prepare: build test lint format gen-ogen gen-mock
+# CI チェック (build + test + lint-check + format-check + markdownlint)
+check: build test lint-check format-check markdownlint
+
+# コミット前の品質担保処理　　(build + test + lint + format + gen-ogen + gen-mock + markdownlint)
+prepare: build test lint format gen-ogen gen-mock markdownlint
 
 # 自動生成ファイルの削除
 clean:

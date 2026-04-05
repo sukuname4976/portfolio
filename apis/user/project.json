@@ -34,10 +34,10 @@
         }
       }
     },
-    "test": {
+    "check": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "go test ./apis/user/..."
+        "command": "docker compose -f apis/user/docker-compose.ci.yaml run --rm ci"
       }
     }
   }

@@ -40,7 +40,8 @@
     }
   },
   "postCreateCommand": {
-    "gh-extensions": "gh extension install yahsan2/gh-sub-issue",
+    "npm-install": "echo '=== npm install ===' && npm install",
+    "gh-extensions-install": "echo '=== gh extensions install ===' && gh extension install yahsan2/gh-sub-issue",
     "go-version": "echo '=== Go ===' && go version",
     "gh-version": "echo '=== GitHub CLI ===' && gh --version",
     "claude-version": "echo '=== Claude Code ===' && claude --version",
