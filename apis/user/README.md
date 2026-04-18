@@ -9,7 +9,7 @@ Golang 製のユーザーサービス。クリーンアーキテクチャに基�
 - Go 1.25
 - [ogen](https://github.com/ogen-go/ogen) : OpenAPIコード生成
 - slog : 構造化ログ
-- testify : テスト
+- testify + gomock : テスト
 
 ## ディレクトリ構成
 
@@ -20,11 +20,11 @@ apis/user/
 │   ├── paths/
 │   └── components/
 ├── src/
-│   ├── application/       # Usecase・DTO
-│   ├── domain/            # ドメインモデル・インターフェース
+│   ├── application/       # Usecase·DTO
+│   ├── domain/            # ドメインモデル·インターフェース
 │   ├── infrastructure/    # 外部サービス
-│   └── presentation/      # コントローラー・リクエストレスポンスモデル
-├── test/                  # 単体テスト・統合テスト・モック
+│   └── presentation/      # コントローラー·リクエストレスポンスモデル
+├── test/                  # 単体テスト·統合テスト·モック
 ├── Dockerfile             # コンテナ定義
 ├── docker-compose.ci.yaml # CI 用 Compose
 ├── docker-compose.yaml    # 開発用 Compose
@@ -64,12 +64,5 @@ OpenAPIスキーマは `IF/openapi.yaml` を参照。
 
 ### 提供エンドポイント
 
-- `GET /` : ヘルスチェック
-- `GET /api/v1/users/{id}` : ユーザー取得（現在はダミーデータを返却）
-
-### ダミーデータ仕様
-
-現在はモック実装のため、以下のダミーデータを返却:
-
-- `GET /api/v1/users/dummy-user-1` → ダミーユーザー（田中 太郎）を返却
-- その他のID → 404 Not Found
+- `GET /health` : ヘルスチェック
+- `GET /api/v1/users/{id}` : ユーザー取得

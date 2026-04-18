@@ -31,8 +31,8 @@ portfolio/
 │   ├── PULL_REQUEST_TEMPLATE.md        # Pull Requestテンプレート
 │   └── workflows/                      # GitHub Actions CI/CD
 ├── apis/                             # バックエンドAPIマイクロサービス
-│   ├── bff/                            # Go - Backend for Frontend（ポート: 8080）
-│   ├── user/                           # Go - ユーザーサービス（ポート: 8081）
+│   ├── bff/                            # Go - Backend for Frontendサービス（ポート: 8080）
+│   ├── user/                           # Go - Userサービス（ポート: 8081）
 │   └── agent/                          # Python - Agentサービス
 ├── clients/                          # フロントエンドクライアント
 │   ├── web/                            # Next.js
@@ -51,7 +51,8 @@ portfolio/
 
 ## リポジトリルートでの共通化
 
-本来monorepoの各プロジェクトは外部に依存せず独立して動作するのが理想ですが、個人開発の効率化のためリポジトリルートで以下を共通化しています。
+本来monorepoの各プロジェクトは外部に依存せず独立して動作するのが理想です。
+しかし、個人開発の効率化のためにこのリポジトリではルートで以下を共通化しています。
 
 - Nx（monorepo管理、依存関係グラフ、差分検出）
 - markdownlint-cli2（Markdownのリンティング）
