@@ -1,19 +1,19 @@
 # エラーハンドリング方針
 
-BFF APIにおけるエラーハンドリングの設計方針。
+BFF API におけるエラーハンドリングの設計方針。
 
 ## 設計原則
 
 - 内部エラー詳細はクライアントに露出しない
 - すべてのエラーは構造化ログに記録する
-- エラーの種類に応じて適切なHTTPステータスを返す
+- エラーの種類に応じて適切なHTTP ステータスを返す
 
 ## エラーの発生源と分類
 
-- HTTP層: プロトコルエラー (JSON構文エラー、型不一致)
+- HTTP層: プロトコルエラー (JSON 構文エラー、型不一致)
 - Controller層: 入力バリデーション (空文字、フォーマット不正)
 - UseCase層: ビジネスロジック (権限不足、状態不整合)
-- Gateway層: 外部通信 (API接続失敗、タイムアウト)
+- Gateway層: 外部通信 (API 接続失敗、タイムアウト)
 - 全レイヤー: システム障害 (panic)
 
 ## ファイル構成
@@ -71,12 +71,12 @@ presentation/middleware/
 正常レスポンス
 ```
 
-## AppError構造
+## AppError 構造
 
 ```go
 type BaseError struct {
     ErrorID              string  // エラー識別子 (例: ERR_ECHO_VALIDATION)
-    Status               int     // HTTPステータスコード
+    Status               int     // HTTP ステータスコード
     ExternalErrorMessage string  // クライアントに返すメッセージ
     InternalErrorMessage string  // ログに記録する内部詳細
 }
@@ -114,7 +114,7 @@ return &ogen.EchoBadRequest{Error: appErr.ExternalErrorMessage}, nil
 
 基礎エラーとカスタムエラーの2層構造で設計する。
 
-- 基礎エラー: HTTPステータスコードに対応した汎用型 (BadRequestError, BadGatewayErrorなど)
+- 基礎エラー: HTTP ステータスコードに対応した汎用型 (BadRequestError, BadGatewayError など)
 - カスタムエラー: 基礎エラーを埋め込み、ビジネス固有の意味を持たせた型
 
 ```go
