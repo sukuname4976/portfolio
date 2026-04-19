@@ -37,6 +37,6 @@ FROM gcr.io/distroless/static-debian12 AS runner
 WORKDIR /app
 COPY --from=builder /app/user .
 
-EXPOSE 8081
+EXPOSE 8000
 
 CMD ["./user"]

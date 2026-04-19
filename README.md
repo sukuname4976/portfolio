@@ -29,8 +29,8 @@ portfolio/
 │   ├── PULL_REQUEST_TEMPLATE.md        # Pull Requestテンプレート
 │   └── workflows/                      # GitHub Actions CI/CD
 ├── apis/                             # バックエンドAPIマイクロサービス
-│   ├── bff/                            # Go - Backend for Frontendサービス（ポート: 8080）
-│   ├── user/                           # Go - Userサービス（ポート: 8081）
+│   ├── bff/                            # Go - Backend for Frontendサービス（開発ポート: 8080）
+│   ├── user/                           # Go - Userサービス（開発ポート: 8081）
 │   └── agent/                          # Python - Agentサービス
 ├── clients/                          # フロントエンドクライアント
 │   └── web/                            # Next.js

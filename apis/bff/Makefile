@@ -6,7 +6,7 @@ up:
 
 # サーバー起動 （開発用・ホットリロード）
 dev:
-	air -c .air.toml
+	PORT=8080 air -c .air.toml
 
 # ogen で OpenAPI からコード生成
 gen-ogen:

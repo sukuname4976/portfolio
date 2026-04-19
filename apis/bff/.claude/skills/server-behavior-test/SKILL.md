@@ -43,7 +43,7 @@ make build && make up
 サーバーが起動しているか確認する。
 
 ```bash
-curl -s http://localhost:8000/health
+curl -s http://localhost:8080/health
 ```
 
 失敗した場合はユーザーに状況を確認する。
@@ -89,7 +89,7 @@ curl -s http://localhost:8000/health
 - 検証内容: 200 レスポンス、echo フィールド、pokemon フィールドの存在
 - 期待結果: 200 OK + JSON（echo.message, pokemon.name など）
 - コマンド:
-  curl -X POST http://localhost:8000/api/v1/echo \
+  curl -X POST http://localhost:8080/api/v1/echo \
     -H "Content-Type: application/json" \
     -d '{"message": "hello"}'
 
@@ -99,7 +99,7 @@ curl -s http://localhost:8000/health
 - 検証内容: 400 レスポンス、エラーメッセージの内容
 - 期待結果: 400 Bad Request + {"error": "message is required"}
 - コマンド:
-  curl -X POST http://localhost:8000/api/v1/echo \
+  curl -X POST http://localhost:8080/api/v1/echo \
     -H "Content-Type: application/json" \
     -d '{"message": ""}'
 ```
