@@ -18,7 +18,7 @@ type Handler interface {
 	//
 	// Health check.
 	//
-	// GET /
+	// GET /health
 	HealthCheck(ctx context.Context) (HealthCheckOK, error)
 }
 

@@ -178,14 +178,14 @@ func (s *Server) handleEchoRequest(args [0]string, argsEscaped bool, w http.Resp
 //
 // Health check.
 //
-// GET /
+// GET /health
 func (s *Server) handleHealthCheckRequest(args [0]string, argsEscaped bool, w http.ResponseWriter, r *http.Request) {
 	statusWriter := &codeRecorder{ResponseWriter: w}
 	w = statusWriter
 	otelAttrs := []attribute.KeyValue{
 		otelogen.OperationID("healthCheck"),
 		semconv.HTTPRequestMethodKey.String("GET"),
-		semconv.HTTPRouteKey.String("/"),
+		semconv.HTTPRouteKey.String("/health"),
 	}
 
 	// Start a span for this request.

@@ -26,7 +26,7 @@ func (UnimplementedHandler) GetUser(ctx context.Context, params GetUserParams) (
 //
 // Health check.
 //
-// GET /
+// GET /health
 func (UnimplementedHandler) HealthCheck(ctx context.Context) (r HealthCheckOK, _ error) {
 	return r, ht.ErrNotImplemented
 }

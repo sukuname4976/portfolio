@@ -58,14 +58,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			}
 
 			if len(elem) == 0 {
-				switch r.Method {
-				case "GET":
-					s.handleHealthCheckRequest([0]string{}, elemIsEscaped, w, r)
-				default:
-					s.notAllowed(w, r, "GET")
-				}
-
-				return
+				break
 			}
 			switch elem[0] {
 			case 'a': // Prefix: "api/v1/users/"
@@ -92,6 +85,26 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 						s.handleGetUserRequest([1]string{
 							args[0],
 						}, elemIsEscaped, w, r)
+					default:
+						s.notAllowed(w, r, "GET")
+					}
+
+					return
+				}
+
+			case 'h': // Prefix: "health"
+
+				if l := len("health"); len(elem) >= l && elem[0:l] == "health" {
+					elem = elem[l:]
+				} else {
+					break
+				}
+
+				if len(elem) == 0 {
+					// Leaf node.
+					switch r.Method {
+					case "GET":
+						s.handleHealthCheckRequest([0]string{}, elemIsEscaped, w, r)
 					default:
 						s.notAllowed(w, r, "GET")
 					}
@@ -196,19 +209,7 @@ func (s *Server) FindPath(method string, u *url.URL) (r Route, _ bool) {
 			}
 
 			if len(elem) == 0 {
-				switch method {
-				case "GET":
-					r.name = HealthCheckOperation
-					r.summary = "Health check"
-					r.operationID = "healthCheck"
-					r.operationGroup = ""
-					r.pathPattern = "/"
-					r.args = args
-					r.count = 0
-					return r, true
-				default:
-					return
-				}
+				break
 			}
 			switch elem[0] {
 			case 'a': // Prefix: "api/v1/users/"
@@ -239,6 +240,31 @@ func (s *Server) FindPath(method string, u *url.URL) (r Route, _ bool) {
 						r.pathPattern = "/api/v1/users/{id}"
 						r.args = args
 						r.count = 1
+						return r, true
+					default:
+						return
+					}
+				}
+
+			case 'h': // Prefix: "health"
+
+				if l := len("health"); len(elem) >= l && elem[0:l] == "health" {
+					elem = elem[l:]
+				} else {
+					break
+				}
+
+				if len(elem) == 0 {
+					// Leaf node.
+					switch method {
+					case "GET":
+						r.name = HealthCheckOperation
+						r.summary = "Health check"
+						r.operationID = "healthCheck"
+						r.operationGroup = ""
+						r.pathPattern = "/health"
+						r.args = args
+						r.count = 0
 						return r, true
 					default:
 						return

@@ -9,7 +9,7 @@ servers:
   - url: http://localhost:8080
     description: 開発用ローカル実行先。`make dev` で開発向け機能 (ホットリロード等) を有効にして起動した際の接続先。
 paths:
-  /:
+  /health:
     $ref: "paths/health.yaml"
   /api/v1/echo:
     $ref: "paths/echo.yaml"
