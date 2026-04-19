@@ -33,7 +33,8 @@
     }
   },
   "postCreateCommand": {
-    "npm-install": "echo '=== npm install ===' && npm install",
+    "npm-install-root": "echo '=== npm install (ルート / nx など共通ツール) ===' && npm install",
+    "npm-install-web": "echo '=== npm install (clients/web / Next.js 本体) ===' && cd clients/web && npm install",
     "gh-extensions-install": "echo '=== gh extensions install ===' && gh extension install yahsan2/gh-sub-issue",
     "node-version": "echo '=== Node.js ===' && node --version",
     "npm-version": "echo '=== npm ===' && npm --version",
