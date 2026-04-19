@@ -10,6 +10,16 @@
       "Bash(go mod:*)"
     ],
     "deny": []
+  },
+  "extraKnownMarketplaces": {
+    "sukuname-tools": {
+      "source": {
+        "source": "directory",
+        "path": "../.."
+      }
+    }
+  },
+  "enabledPlugins": {
+    "sukuname-workflow-plugin@sukuname-tools": true
   }
 }
-
