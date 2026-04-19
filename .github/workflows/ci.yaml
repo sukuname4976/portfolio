@@ -62,4 +62,4 @@ jobs:
         run: npm ci
 
       - name: Markdown Lint
-        run: make lint-markdown
+        run: make markdownlint
