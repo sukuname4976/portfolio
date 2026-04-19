@@ -83,25 +83,25 @@ curl -s http://localhost:8081/health
 ```markdown
 ## テストケース
 
-### 1. 正常系: メッセージのエコー
+### 1. 正常系: <ケース名>
 
-- 目的: メッセージが正しくエコーされ、Pokemon 情報も返却されるか
-- 検証内容: 200 レスポンス、echo フィールド、pokemon フィールドの存在
-- 期待結果: 200 OK + JSON（echo.message, pokemon.name など）
+- 目的: <何を確認したいか>
+- 検証内容: <どのフィールド・ステータスを見るか>
+- 期待結果: <想定するレスポンス>
 - コマンド:
-  curl -X POST http://localhost:8081/api/v1/echo \
+  curl -X <METHOD> http://localhost:8081/api/v1/<endpoint> \
     -H "Content-Type: application/json" \
-    -d '{"message": "hello"}'
+    -d '<request-body>'
 
-### 2. 入力検証: 空メッセージの拒否
+### 2. 異常系: <ケース名>
 
-- 目的: バリデーションが機能し、空メッセージを拒否するか
-- 検証内容: 400 レスポンス、エラーメッセージの内容
-- 期待結果: 400 Bad Request + {"error": "message is required"}
+- 目的: <何を確認したいか>
+- 検証内容: <どのフィールド・ステータスを見るか>
+- 期待結果: <想定するレスポンス>
 - コマンド:
-  curl -X POST http://localhost:8081/api/v1/echo \
+  curl -X <METHOD> http://localhost:8081/api/v1/<endpoint> \
     -H "Content-Type: application/json" \
-    -d '{"message": ""}'
+    -d '<request-body>'
 ```
 
 **人間のアクション:**
@@ -136,8 +136,8 @@ YYYY-MM-DD HH:MM
 
 ### 対象
 
-- エンドポイント: POST /api/v1/echo
-- 確認範囲: 正常系 + エラー系
+- エンドポイント: <METHOD> /api/v1/<endpoint>
+- 確認範囲: <正常系 / 異常系 / 全パターン など>
 
 ### 結果サマリ
 
@@ -146,17 +146,17 @@ YYYY-MM-DD HH:MM
 
 ### 詳細
 
-#### 1. 正常系: メッセージのエコー
+#### 1. 正常系: <ケース名>
 
 - 結果: OK / NG
-- ステータス: 200
+- ステータス: <期待したステータスコード>
 - レスポンス: （実際のレスポンス）
 - 備考: （あれば）
 
-#### 2. 入力検証: 空メッセージの拒否
+#### 2. 異常系: <ケース名>
 
 - 結果: OK / NG
-- ステータス: 400
+- ステータス: <期待したステータスコード>
 - レスポンス: （実際のレスポンス）
 - 備考: （あれば）
 ```
