@@ -1,6 +1,7 @@
 ---
 name: write-document
-description: Markdownファイルとして用意されるドキュメントを、記法の規約に沿って作成・編集する。
+description: Markdown ファイルとして用意されるドキュメントを、記法の規約に沿って作成・編集する。
+allowed-tools: Bash(npx markdownlint-cli2*)
 ---
 
 <!-- markdownlint-disable -->

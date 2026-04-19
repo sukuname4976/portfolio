@@ -29,6 +29,13 @@ Markdown ファイルとして用意されるドキュメントを、記法の�
 
 - `gitignore: true` : .gitignore と同じ除外
 - `MD041: false` : 先頭 h1 チェック無効（スキル等で @ 参照を使うため）
+- コード例など改行すると意味が変わるものは、コメントで囲んでルールを無視する
+
+  ```markdown
+  <!-- markdownlint-disable MD013 -->
+  長いコマンド例...
+  <!-- markdownlint-enable MD013 -->
+  ```
 
 ## 表現ルール
 
