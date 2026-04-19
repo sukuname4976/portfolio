@@ -21,8 +21,6 @@ body:
         - label: 🤖 apis/agent
         - label: 🔀 apis/bff
         - label: 👤 apis/user
-        - label: 📱 clients/android
-        - label: 🍎 clients/ios
         - label: 🌐 clients/web
         - label: ☁️ infras/terraform
         - label: 📚 libraries/golang-shared

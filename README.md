@@ -23,8 +23,6 @@ portfolio/
 │   ├── go/                             # Go 開発環境
 │   ├── python/                         # Python 開発環境
 │   ├── nodejs/                         # Node.js/Next.js 開発環境
-│   ├── kotlin/                         # Kotlin/Android 開発環境
-│   ├── swift/                          # Swift/iOS 開発環境
 │   └── terraform/                      # Terraform 開発環境
 ├── .github/                          # GitHub設定
 │   ├── ISSUE_TEMPLATE/                 # Issueテンプレート
@@ -35,9 +33,7 @@ portfolio/
 │   ├── user/                           # Go - Userサービス（ポート: 8081）
 │   └── agent/                          # Python - Agentサービス
 ├── clients/                          # フロントエンドクライアント
-│   ├── web/                            # Next.js
-│   ├── android/                        # Kotlin
-│   └── ios/                            # Swift
+│   └── web/                            # Next.js
 ├── docs-obsidian-vault/              # ドキュメント（Obsidian Vault）
 │   ├── projects/                       # プロジェクト別ドキュメント
 │   ├── repository-overview/            # リポジトリ全体のドキュメント

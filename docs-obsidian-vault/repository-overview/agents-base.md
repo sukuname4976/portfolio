@@ -6,7 +6,7 @@
 ## プロジェクト構成
 
 - `apis/` - バックエンド API (Go, Python)
-- `clients/` - フロントエンド (Web, iOS, Android)
+- `clients/` - フロントエンド (Web)
 - `infras/` - インフラ (Terraform)
 - `libraries/` - 共有ライブラリ
 
