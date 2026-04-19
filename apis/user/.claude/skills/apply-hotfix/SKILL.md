@@ -1,6 +1,6 @@
 ---
 name: apply-hotfix
-description: hotfixを一括で実行する。Issue作成→修正実装→コミット→PR作成まで自動化。
+description: hotfix を一括で実行する。Issue 作成 → 修正実装 → コミット → PR 作成まで自動化。
 ---
 
 <!-- markdownlint-disable -->

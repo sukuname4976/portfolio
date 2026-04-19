@@ -1,6 +1,6 @@
 ---
 name: parent-issue
-description: 親Issue（Epic/Feature）を作成する。テンプレートに従ってIssue本文を作成し、gh issue createで作成。
+description: 親 Issue(Epic/Feature)を作成する。テンプレートに従って Issue 本文を作成し、gh issue create で作成。
 ---
 
 <!-- markdownlint-disable -->
