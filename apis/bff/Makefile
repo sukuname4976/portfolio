@@ -58,8 +58,9 @@ format-check:
 markdownlint:
 	npx markdownlint-cli2 "**/*.md"
 
-# CI チェック (build + test + lint-check + format-check + markdownlint)
-check: build test lint-check format-check markdownlint
+# CI チェック (build + test + lint-check + format-check)
+# (Markdown Lint はリポジトリ全体を対象とし、node の依存関係が必要なため CI の別ジョブで実行する)
+check: build test lint-check format-check
 
 # コミット前の品質担保処理　　(build + test + lint + format + gen-ogen + gen-mock + markdownlint)
 prepare: build test lint format gen-ogen gen-mock markdownlint
