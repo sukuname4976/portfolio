@@ -1,11 +1,14 @@
+name: Review
+
 on:
   pull_request:
-    types: [opened, synchronize, reopened, ready_for_review]
+    types: [ opened, synchronize, reopened, ready_for_review ]
 
   workflow_dispatch:
 
 concurrency:
-  group: claude-code-pr-review-${{ github.event.pull_request.number || github.run_id }}
+  group: claude-code-pr-review-${{ github.event.pull_request.number ||
+    github.run_id }}
   cancel-in-progress: true
 
 permissions:
@@ -15,7 +18,7 @@ permissions:
 
 jobs:
   review:
-    name: Claude Code PR コードレビュー
+    name: Claude Code による PR コードレビューを実行
     runs-on: ubuntu-latest
     steps:
       - name: チェックアウト

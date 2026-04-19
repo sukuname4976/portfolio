@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   check:
-    name: 変更を検出したプロジェクトへのCI
+    name: Nx 変更検出したプロジェクトへ CI を実行
     runs-on: ubuntu-latest
     steps:
       - name: チェックアウト
@@ -46,7 +46,7 @@ jobs:
           DOCKER_BUILDKIT: 1
 
   markdownlint:
-    name: Markdown Lint
+    name: リポジトリ全体へ Markdown Lint を実行
     runs-on: ubuntu-latest
     steps:
       - name: チェックアウト
