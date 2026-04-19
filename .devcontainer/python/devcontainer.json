@@ -41,7 +41,8 @@
     }
   },
   "postCreateCommand": {
-    "gh-extensions": "gh extension install yahsan2/gh-sub-issue",
+    "npm-install": "echo '=== npm install ===' && npm install",
+    "gh-extensions-install": "echo '=== gh extensions install ===' && gh extension install yahsan2/gh-sub-issue",
     "uv-version": "echo '=== uv ===' && uv --version",
     "python-version": "echo '=== Python ===' && python --version",
     "gh-version": "echo '=== GitHub CLI ===' && gh --version",

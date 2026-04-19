@@ -1,13 +1,14 @@
 # =============================================================================
 # CI: CI検証用 （make check を実行）
 # =============================================================================
-FROM golang:alpine AS ci
+FROM golang:1.25-alpine AS ci
 
 WORKDIR /app
 
-RUN apk add --no-cache make
-RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-RUN go install golang.org/x/tools/cmd/goimports@latest
+RUN apk add --no-cache make diffutils
+RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.64.8
+RUN go install golang.org/x/tools/cmd/goimports@v0.43.0
+RUN go install github.com/ogen-go/ogen/cmd/ogen@v1.18.0
 
 COPY go.mod go.sum ./
 RUN go mod download
@@ -19,7 +20,7 @@ CMD ["make", "check"]
 # =============================================================================
 # builder: 本番用マルチステージビルドの前段 （本番用バイナリのビルド）
 # =============================================================================
-FROM golang:alpine AS builder
+FROM golang:1.25-alpine AS builder
 
 WORKDIR /app
 
@@ -37,6 +38,6 @@ FROM gcr.io/distroless/static-debian12 AS runner
 WORKDIR /app
 COPY --from=builder /app/user .
 
-EXPOSE 8081
+EXPOSE 8000
 
 CMD ["./user"]

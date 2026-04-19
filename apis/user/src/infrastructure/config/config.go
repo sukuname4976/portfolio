@@ -60,7 +60,7 @@ func Load() (*Config, error) {
 
 	return &Config{
 		RunEnv: runEnv,
-		Port:   getEnvOrDefault("PORT", "8081"),
+		Port:   getEnvOrDefault("PORT", "8000"),
 	}, nil
 }
 

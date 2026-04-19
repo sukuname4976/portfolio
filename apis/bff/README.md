@@ -7,7 +7,7 @@ Golang 製の BFF (Backend for Frontend) サービス。クリーンアーキテ
 ## 技術スタック
 
 - Go 1.25
-- [ogen](https://github.com/ogen-go/ogen) : OpenAPIコード生成
+- [ogen](https://github.com/ogen-go/ogen) : OpenAPI コード生成
 - slog : 構造化ログ
 - testify + gomock : テスト
 
@@ -52,15 +52,15 @@ make dev
 
 - `make dev` : 開発時に利用するサーバー起動 (ホットリロード対応)
 - `make up` : 本番同等条件を試すサーバー起動コマンド
-- `make gen-ogen` : OpenAPIからコード生成
+- `make gen-ogen` : OpenAPI からコード生成
 - `make gen-mock` : モック生成
 - `make check` : CI チェック (ビルド + テスト + リンティング確認 + フォーマット確認)
 - `make prepare` : コミット前の品質担保処理
                    (ビルド + テスト + リンティング修正 + フォーマット修正 + gen-ogen + gen-mock)
 
-## API仕様
+## API 仕様
 
-OpenAPIスキーマは `IF/openapi.yaml` を参照。
+OpenAPI スキーマは `IF/openapi.yaml` を参照。
 
 ### 提供エンドポイント
 

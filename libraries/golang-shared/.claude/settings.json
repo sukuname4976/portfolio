@@ -2,6 +2,8 @@
   "permissions": {
     "allow": [],
     "deny": []
+  },
+  "enabledPlugins": {
+    "sukuname-workflow-plugin@sukuname-tools": true
   }
 }
-

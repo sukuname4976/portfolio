@@ -34,7 +34,7 @@
       "options": {
         "command": "go run ./apis/bff",
         "env": {
-          "PORT": "8000"
+          "PORT": "8080"
         }
       }
     },

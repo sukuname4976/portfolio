@@ -26,7 +26,7 @@ func (UnimplementedHandler) Echo(ctx context.Context, req *EchoRequest) (r EchoR
 //
 // Health check.
 //
-// GET /
+// GET /health
 func (UnimplementedHandler) HealthCheck(ctx context.Context) (r HealthCheckOK, _ error) {
 	return r, ht.ErrNotImplemented
 }

@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   check:
-    name: 変更を検出したプロジェクトへのCI
+    name: Nx 変更検出したプロジェクトへ CI を実行
     runs-on: ubuntu-latest
     steps:
       - name: チェックアウト
@@ -44,3 +44,22 @@ jobs:
         run: npx nx affected -t check --parallel=3
         env:
           DOCKER_BUILDKIT: 1
+
+  markdownlint:
+    name: リポジトリ全体へ Markdown Lint を実行
+    runs-on: ubuntu-latest
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v4
+
+      - name: Node.js セットアップ
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: npm install
+        run: npm ci
+
+      - name: Markdown Lint
+        run: make markdownlint

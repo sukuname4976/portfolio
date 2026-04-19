@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "sukuname-tools",
+  "description": "sukuname 個人開発用 Claude Code プラグイン群",
+  "owner": {
+    "name": "sukuname"
+  },
+  "plugins": [
+    {
+      "name": "sukuname-workflow-plugin",
+      "description": "個人開発用ワークフロー自動化スキル群プラグイン",
+      "version": "1.0.0",
+      "source": "./claude-code-sukuname-tools-plugin"
+    }
+  ]
+}

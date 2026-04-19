@@ -10,6 +10,8 @@
       "Bash(go mod:*)"
     ],
     "deny": []
+  },
+  "enabledPlugins": {
+    "sukuname-workflow-plugin@sukuname-tools": true
   }
 }
-

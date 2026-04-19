@@ -44,8 +44,11 @@
     "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
   },
   "postCreateCommand": {
-    "gh-extensions": "gh extension install yahsan2/gh-sub-issue",
-    "versions": "terraform --version && gh --version && claude --version",
+    "npm-install": "echo '=== npm install ===' && npm install",
+    "gh-extensions-install": "echo '=== gh extensions install ===' && gh extension install yahsan2/gh-sub-issue",
+    "terraform-version": "echo '=== Terraform ===' && terraform --version",
+    "gh-version": "echo '=== GitHub CLI ===' && gh --version",
+    "claude-version": "echo '=== Claude Code ===' && claude --version",
     "message": "echo 'Terraform の開発コンテナが起動し、セットアップを実行中...'"
   }
 }

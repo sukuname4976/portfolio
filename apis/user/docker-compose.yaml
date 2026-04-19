@@ -6,8 +6,8 @@ services:
       target: runner
     image: user:latest
     ports:
-      - "8081:8081"
+      - "8000:8000"
     environment:
       - RUN_ENV=production
-      - PORT=8081
+      - PORT=8000
     restart: unless-stopped

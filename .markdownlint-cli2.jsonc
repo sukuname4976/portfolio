@@ -1,0 +1,7 @@
+{
+  "gitignore": true,
+  "config": {
+    // MD041: 最初の行がh1である必要がある → claude codeのskillsとの相性が悪いため無効化
+    "MD041": false
+  }
+}

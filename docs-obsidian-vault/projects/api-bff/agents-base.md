@@ -1,6 +1,6 @@
 # BFF API
 
-Go製のBFF（Backend for Frontend）サービス。
+Go 製の BFF（Backend for Frontend）サービス。
 
 ## 技術スタック
 

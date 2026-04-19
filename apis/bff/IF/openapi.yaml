@@ -2,12 +2,14 @@ openapi: 3.0.0
 info:
   title: BFF API
   version: 1.0.0
-  description: Backend for Frontend API specification
+  description: Backend for Frontend (BFF) の API 仕様
 servers:
   - url: http://localhost:8000
-    description: Local development server
+    description: 本番相当のローカル実行先。`make up` で本番向けに最適化した状態で起動した際の接続先。
+  - url: http://localhost:8080
+    description: 開発用ローカル実行先。`make dev` で開発向け機能 (ホットリロード等) を有効にして起動した際の接続先。
 paths:
-  /:
+  /health:
     $ref: "paths/health.yaml"
   /api/v1/echo:
     $ref: "paths/echo.yaml"

@@ -10,7 +10,3 @@ bin/
 
 # Coverage
 coverage/
-
-# Auto-generated files
-src/presentation/auto-generated-by-ogen/
-test/mocks/
