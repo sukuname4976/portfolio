@@ -15,7 +15,7 @@ description: シンプルな todo Issue を作成する。フォーマット指�
 ## Issue 作成実行の全体の例
 
 ```bash
-gh issue create --title "READMEにセットアップ手順を追記" --label "todo" --body "$(cat <<'EOF'
+gh issue create --title "README にセットアップ手順を追記" --label "todo" --body "$(cat <<'EOF'
 ## 概要
 
 README.md にローカル開発環境のセットアップ手順を追記する。

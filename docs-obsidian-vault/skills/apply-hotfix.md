@@ -41,7 +41,7 @@ git checkout -b hotfix/42
 ## フロー全体
 
 ```text
-[ヒアリング] → [Issue作成] → [ブランチ作成] → [修正実装] → [コミット] → [PR作成]
+[ヒアリング] → [Issue 作成] → [ブランチ作成] → [修正実装] → [コミット] → [PR 作成]
                    ↓              ↓              ↓            ↓           ↓
               hotfix ラベル  hotfix/{番号}    AI が実装   commit     create-pr
                                                            スキル      スキル
