@@ -1,7 +1,7 @@
 ---
 name: write-document
 description: Markdown ファイルとして用意されるドキュメントを、記法の規約に沿って作成・編集する。
-allowed-tools: Bash(npx markdownlint-cli2*)
+allowed-tools: Bash(*/skills/write-document/scripts/lint-md.sh *)
 ---
 
 # write-document スキル
@@ -19,7 +19,8 @@ Markdown ファイルとして用意されるドキュメントを、記法の�
 2. 作成・編集すべき内容が不明確な場合、ユーザーに対して書く内容を提案・質問
 3. markdownlint ルールと表現ルールを確認する
 4. 最小限の内容で記述
-5. `npx markdownlint-cli2 <file>` で、ファイルが markdownlint ルールに従っていることを確認
+5. `${CLAUDE_SKILL_DIR}/scripts/lint-md.sh <files>` で、ファイルが markdownlint ルールに従っていることを確認
+   - 複数ファイル・glob パターン指定可
 6. ファイルが全ての表現ルールに従っていることを確認
 7. ルール違反箇所を修正
 8. ユーザーにサマリーを提示し、フィードバックを受けたら 4 に戻る
