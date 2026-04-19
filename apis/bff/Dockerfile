@@ -5,9 +5,10 @@ FROM golang:alpine AS ci
 
 WORKDIR /app
 
-RUN apk add --no-cache make
+RUN apk add --no-cache make diffutils
 RUN go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 RUN go install golang.org/x/tools/cmd/goimports@latest
+RUN go install github.com/ogen-go/ogen/cmd/ogen@latest
 
 COPY go.mod go.sum ./
 RUN go mod download
