@@ -1,10 +1,10 @@
-import { bffServerClient } from '@/api/bff-server-client'
+import { getBffServerClient } from '@/api/bff-server-client'
 import { EchoForm } from './_components/EchoForm'
 
 export const dynamic = 'force-dynamic'
 
 export default async function Home() {
-  const { data, error } = await bffServerClient.POST('/api/v1/echo', {
+  const { data, error } = await getBffServerClient().POST('/api/v1/echo', {
     body: { message: 'Hello from web (Server Component)' },
   })
 

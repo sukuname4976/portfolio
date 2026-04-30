@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { bffServerClient } from '@/api/bff-server-client'
+import { getBffServerClient } from '@/api/bff-server-client'
 import type { components } from '@/api/generated/schema'
 
 type EchoRequest = components['schemas']['EchoRequest']
@@ -9,7 +9,7 @@ type EchoRequest = components['schemas']['EchoRequest']
 export async function POST(request: NextRequest) {
   const body = (await request.json()) as EchoRequest
 
-  const { data, error, response } = await bffServerClient.POST('/api/v1/echo', {
+  const { data, error, response } = await getBffServerClient().POST('/api/v1/echo', {
     body,
   })
 

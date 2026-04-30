@@ -11,7 +11,8 @@
       "!**/.next",
       "!**/dist",
       "!**/coverage",
-      "!**/src/api/generated"
+      "!**/src/api/generated",
+      "!**/next-env.d.ts"
     ]
   },
   "formatter": {
@@ -23,7 +24,10 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true
+      "recommended": true,
+      "performance": {
+        "noImgElement": "off"
+      }
     }
   },
   "javascript": {
