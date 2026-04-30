@@ -1,0 +1,20 @@
+import { type NextRequest, NextResponse } from 'next/server'
+import { bffServerClient } from '@/api/bff-server-client'
+import type { components } from '@/api/generated/schema'
+
+type EchoRequest = components['schemas']['EchoRequest']
+
+// TODO(認証 issue): リクエスト cookie から user_token を抽出して BFF へ転送
+// TODO(認証 issue): BFF が要求する API キーを Authorization ヘッダで付与
+export async function POST(request: NextRequest) {
+  const body = (await request.json()) as EchoRequest
+
+  const { data, error, response } = await bffServerClient.POST('/api/v1/echo', {
+    body,
+  })
+
+  if (error) {
+    return NextResponse.json(error, { status: response.status })
+  }
+  return NextResponse.json(data)
+}
