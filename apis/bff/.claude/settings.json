@@ -11,6 +11,14 @@
     ],
     "deny": []
   },
+  "extraKnownMarketplaces": {
+    "sukuname-tools": {
+      "source": {
+        "source": "file",
+        "path": "../../../.claude-plugin/marketplace.json"
+      }
+    }
+  },
   "enabledPlugins": {
     "sukuname-workflow-plugin@sukuname-tools": true
   }
