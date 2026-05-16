@@ -49,11 +49,17 @@ gen-api-check:
 		exit 1; \
 	fi
 
+# 依存同期: lockfile が node_modules より新しい時のみ npm ci を実行する Make の mtime 比較イディオム
+# 末尾の touch で node_modules の mtime を更新し、次回以降の不要な再実行を避ける
+node_modules: package.json package-lock.json
+	npm ci
+	touch $@
+
 # CI チェック (build + test + lint-check + format-check + gen-api-check)
-check: build test lint-check format-check gen-api-check
+check: node_modules build test lint-check format-check gen-api-check
 
 # コミット前の品質担保処理 (build + test + lint + format + gen-api)
-prepare: build test lint format gen-api
+prepare: node_modules build test lint format gen-api
 
 # 自動生成ファイルの削除
 clean:
