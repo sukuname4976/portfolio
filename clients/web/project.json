@@ -5,40 +5,50 @@
   "projectType": "application",
   "implicitDependencies": ["bff"],
   "targets": {
-    "generate-api-client": {
+    "gen-api": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "echo 'Generate TypeScript client from BFF IF specification'"
+        "command": "make gen-api",
+        "cwd": "clients/web"
       },
-      "inputs": ["apis/bff/IF/**/*"],
-      "outputs": ["clients/web/src/api/generated/**/*"]
+      "inputs": ["{workspaceRoot}/apis/bff/IF/**/*"],
+      "outputs": ["{projectRoot}/src/api/generated/**/*"]
     },
     "build": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npm run build",
+        "command": "make build",
         "cwd": "clients/web"
       },
-      "inputs": [
-        "production",
-        "clients/web/**/*",
-        "!clients/web/src/api/generated/**/*"
-      ]
+      "inputs": ["production"]
     },
     "serve": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npm run dev",
+        "command": "make dev",
+        "cwd": "clients/web"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "make test",
         "cwd": "clients/web"
       }
     },
     "lint": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "npm run lint",
+        "command": "make lint",
+        "cwd": "clients/web"
+      }
+    },
+    "check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "make check",
         "cwd": "clients/web"
       }
     }
   }
 }
-

@@ -11,9 +11,18 @@ yarn-error.log*
 .next/
 out/
 dist/
+next-env.d.ts
+
+# TypeScript インクリメンタル型チェックキャッシュ
+*.tsbuildinfo
 
 # Coverage
 coverage/
 *.lcov
 .nyc_output/
+
+# Env (.env.example のみ管理する)
+.env
+.env.local
+.env.*.local
 

@@ -3,23 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start -p 3000",
+    "test": "vitest run",
+    "lint": "biome lint --write .",
+    "lint-check": "biome lint .",
+    "format": "biome format --write .",
+    "format-check": "biome format .",
+    "gen-api": "openapi-typescript ../../apis/bff/IF/openapi.yaml -o ./src/api/generated/schema.d.ts"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "next": "^16.0.0"
+    "next": "^16.0.0",
+    "openapi-fetch": "^0.17.0"
+  },
+  "engines": {
+    "node": ">=24.0.0",
+    "npm": ">=11.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^24.0.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
     "typescript": "^5.0.0",
-    "eslint": "^8.0.0",
-    "eslint-config-next": "^16.0.0"
+    "@biomejs/biome": "^2.4.13",
+    "vitest": "^4.1.5",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@vitejs/plugin-react": "^6.0.1",
+    "jsdom": "^29.1.1",
+    "openapi-typescript": "^7.13.0"
   }
 }
-

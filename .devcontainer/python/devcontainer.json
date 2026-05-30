@@ -5,7 +5,9 @@
   "workspaceFolder": "/monorepo-root-as-python-workspace",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/devcontainers/features/node:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "24"
+    },
     "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
   },
   "customizations": {
