@@ -13,6 +13,9 @@ out/
 dist/
 next-env.d.ts
 
+# TypeScript インクリメンタル型チェックキャッシュ
+*.tsbuildinfo
+
 # Coverage
 coverage/
 *.lcov
