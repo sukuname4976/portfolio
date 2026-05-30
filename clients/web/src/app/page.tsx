@@ -4,9 +4,15 @@ import { EchoForm } from './_components/EchoForm'
 export const dynamic = 'force-dynamic'
 
 export default async function Home() {
-  const { data, error } = await getBffServerClient().POST('/api/v1/echo', {
-    body: { message: 'Hello from web (Server Component)' },
-  })
+  // ネットワーク例外 (BFF 未起動・DNS 失敗・タイムアウト等) は openapi-fetch の error と同形にフォールバックさせ、ページ全体の 500 化を避ける
+  const { data, error } = await getBffServerClient()
+    .POST('/api/v1/echo', {
+      body: { message: 'Hello from web (Server Component)' },
+    })
+    .catch(() => ({
+      data: undefined,
+      error: { error: 'BFF に接続できません' },
+    }))
 
   return (
     <main style={{ padding: '24px', fontFamily: 'sans-serif' }}>
