@@ -6,6 +6,46 @@ import (
 	"io"
 )
 
+type CreateUserBadGateway ErrorResponse
+
+func (*CreateUserBadGateway) createUserRes() {}
+
+type CreateUserBadRequest ErrorResponse
+
+func (*CreateUserBadRequest) createUserRes() {}
+
+type CreateUserConflict ErrorResponse
+
+func (*CreateUserConflict) createUserRes() {}
+
+// Ref: #/CreateUserRequest
+type CreateUserRequest struct {
+	// User name.
+	Name string `json:"name"`
+	// User email address.
+	Email string `json:"email"`
+}
+
+// GetName returns the value of Name.
+func (s *CreateUserRequest) GetName() string {
+	return s.Name
+}
+
+// GetEmail returns the value of Email.
+func (s *CreateUserRequest) GetEmail() string {
+	return s.Email
+}
+
+// SetName sets the value of Name.
+func (s *CreateUserRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetEmail sets the value of Email.
+func (s *CreateUserRequest) SetEmail(val string) {
+	s.Email = val
+}
+
 type EchoBadRequest ErrorResponse
 
 func (*EchoBadRequest) echoRes() {}
@@ -89,6 +129,14 @@ func (s *ErrorResponse) GetError() string {
 func (s *ErrorResponse) SetError(val string) {
 	s.Error = val
 }
+
+type GetUserBadGateway ErrorResponse
+
+func (*GetUserBadGateway) getUserRes() {}
+
+type GetUserNotFound ErrorResponse
+
+func (*GetUserNotFound) getUserRes() {}
 
 type HealthCheckOK struct {
 	Data io.Reader
@@ -183,3 +231,61 @@ func (s *TypeData) SetSlot(val int) {
 func (s *TypeData) SetName(val string) {
 	s.Name = val
 }
+
+// Ref: #/UserData
+type UserData struct {
+	// User ID.
+	ID string `json:"id"`
+	// User name.
+	Name string `json:"name"`
+	// User email address.
+	Email string `json:"email"`
+}
+
+// GetID returns the value of ID.
+func (s *UserData) GetID() string {
+	return s.ID
+}
+
+// GetName returns the value of Name.
+func (s *UserData) GetName() string {
+	return s.Name
+}
+
+// GetEmail returns the value of Email.
+func (s *UserData) GetEmail() string {
+	return s.Email
+}
+
+// SetID sets the value of ID.
+func (s *UserData) SetID(val string) {
+	s.ID = val
+}
+
+// SetName sets the value of Name.
+func (s *UserData) SetName(val string) {
+	s.Name = val
+}
+
+// SetEmail sets the value of Email.
+func (s *UserData) SetEmail(val string) {
+	s.Email = val
+}
+
+// Ref: #/UserResponse
+type UserResponse struct {
+	User UserData `json:"user"`
+}
+
+// GetUser returns the value of User.
+func (s *UserResponse) GetUser() UserData {
+	return s.User
+}
+
+// SetUser sets the value of User.
+func (s *UserResponse) SetUser(val UserData) {
+	s.User = val
+}
+
+func (*UserResponse) createUserRes() {}
+func (*UserResponse) getUserRes()    {}

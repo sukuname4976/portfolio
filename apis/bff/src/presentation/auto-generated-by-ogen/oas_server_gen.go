@@ -8,12 +8,24 @@ import (
 
 // Handler handles operations described by OpenAPI v3 specification.
 type Handler interface {
+	// CreateUser implements createUser operation.
+	//
+	// Register user (proxy to user service).
+	//
+	// POST /api/v1/users
+	CreateUser(ctx context.Context, req *CreateUserRequest) (CreateUserRes, error)
 	// Echo implements echo operation.
 	//
 	// Echo message with Pokemon info.
 	//
 	// POST /api/v1/echo
 	Echo(ctx context.Context, req *EchoRequest) (EchoRes, error)
+	// GetUser implements getUser operation.
+	//
+	// Get user by ID (proxy to user service).
+	//
+	// GET /api/v1/users/{id}
+	GetUser(ctx context.Context, params GetUserParams) (GetUserRes, error)
 	// HealthCheck implements healthCheck operation.
 	//
 	// Health check.

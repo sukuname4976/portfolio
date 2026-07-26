@@ -39,3 +39,22 @@ func NewUserValidationError(externalMsg, internalMsg string) *UserValidationErro
 		},
 	}
 }
+
+// UserConflictError ユーザー重複エラー (email の UNIQUE 制約違反など)
+type UserConflictError struct {
+	ConflictError
+}
+
+// NewUserConflictError ユーザー重複エラーを生成
+func NewUserConflictError(externalMsg, internalMsg string) *UserConflictError {
+	return &UserConflictError{
+		ConflictError: ConflictError{
+			BaseError: BaseError{
+				ErrorID:              ErrIDUserConflict,
+				Status:               http.StatusConflict,
+				ExternalErrorMessage: externalMsg,
+				InternalErrorMessage: internalMsg,
+			},
+		},
+	}
+}

@@ -6,6 +6,46 @@ import (
 	"io"
 )
 
+type CreateUserBadRequest ErrorResponse
+
+func (*CreateUserBadRequest) createUserRes() {}
+
+type CreateUserConflict ErrorResponse
+
+func (*CreateUserConflict) createUserRes() {}
+
+type CreateUserInternalServerError ErrorResponse
+
+func (*CreateUserInternalServerError) createUserRes() {}
+
+// Ref: #/CreateUserRequest
+type CreateUserRequest struct {
+	// User name.
+	Name string `json:"name"`
+	// User email address.
+	Email string `json:"email"`
+}
+
+// GetName returns the value of Name.
+func (s *CreateUserRequest) GetName() string {
+	return s.Name
+}
+
+// GetEmail returns the value of Email.
+func (s *CreateUserRequest) GetEmail() string {
+	return s.Email
+}
+
+// SetName sets the value of Name.
+func (s *CreateUserRequest) SetName(val string) {
+	s.Name = val
+}
+
+// SetEmail sets the value of Email.
+func (s *CreateUserRequest) SetEmail(val string) {
+	s.Email = val
+}
+
 // Ref: #/ErrorResponse
 type ErrorResponse struct {
 	// Error message.
@@ -99,4 +139,5 @@ func (s *UserResponse) SetUser(val UserData) {
 	s.User = val
 }
 
-func (*UserResponse) getUserRes() {}
+func (*UserResponse) createUserRes() {}
+func (*UserResponse) getUserRes()    {}

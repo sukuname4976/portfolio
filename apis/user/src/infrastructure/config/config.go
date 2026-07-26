@@ -37,8 +37,9 @@ func ParseRunEnv(s string) (RunEnv, error) {
 
 // Config アプリケーション設定
 type Config struct {
-	RunEnv RunEnv
-	Port   string
+	RunEnv      RunEnv
+	Port        string
+	DatabaseURL string
 }
 
 // Load 実行環境に応じて設定を読み込み
@@ -59,8 +60,9 @@ func Load() (*Config, error) {
 	}
 
 	return &Config{
-		RunEnv: runEnv,
-		Port:   getEnvOrDefault("PORT", "8000"),
+		RunEnv:      runEnv,
+		Port:        getEnvOrDefault("PORT", "8000"),
+		DatabaseURL: os.Getenv("DATABASE_URL"),
 	}, nil
 }
 

@@ -13,3 +13,8 @@ const (
 const (
 	ErrIDPokemonGateway = "ERR_POKEMON_GATEWAY"
 )
+
+// User Gateway 用
+const (
+	ErrIDUserGateway = "ERR_USER_GATEWAY"
+)

@@ -39,3 +39,22 @@ func NewPokemonGatewayError(internalMsg string) *PokemonGatewayError {
 		},
 	}
 }
+
+// UserGatewayError user サービス通信エラー
+type UserGatewayError struct {
+	BadGatewayError
+}
+
+// NewUserGatewayError user サービス通信エラーを生成
+func NewUserGatewayError(internalMsg string) *UserGatewayError {
+	return &UserGatewayError{
+		BadGatewayError: BadGatewayError{
+			BaseError: BaseError{
+				ErrorID:              ErrIDUserGateway,
+				Status:               http.StatusBadGateway,
+				ExternalErrorMessage: "user service unavailable",
+				InternalErrorMessage: internalMsg,
+			},
+		},
+	}
+}

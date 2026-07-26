@@ -8,4 +8,5 @@ package errors
 const (
 	ErrIDUserNotFound   = "ERR_USER_NOT_FOUND"
 	ErrIDUserValidation = "ERR_USER_VALIDATION"
+	ErrIDUserConflict   = "ERR_USER_CONFLICT"
 )

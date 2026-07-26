@@ -2,11 +2,12 @@ package usecase
 
 import (
 	"context"
+	"errors"
 
 	inputdto "github.com/sukuname4976/portfolio/apis/user/src/application/input-dto"
 	outputdto "github.com/sukuname4976/portfolio/apis/user/src/application/output-dto"
 	"github.com/sukuname4976/portfolio/apis/user/src/domain/entities/user"
-	"github.com/sukuname4976/portfolio/apis/user/src/domain/value-objects/email"
+	userrepo "github.com/sukuname4976/portfolio/apis/user/src/domain/repository-interfaces/user"
 	"github.com/sukuname4976/portfolio/apis/user/src/domain/value-objects/userid"
 	apperrors "github.com/sukuname4976/portfolio/apis/user/src/infrastructure/errors"
 )
@@ -16,34 +17,31 @@ type GetUserUseCase interface {
 	Execute(ctx context.Context, input inputdto.GetUserInput) (*outputdto.GetUserOutput, error)
 }
 
-type getUserUseCase struct{}
-
-// NewGetUserUseCase GetUserUseCaseを生成
-func NewGetUserUseCase() GetUserUseCase {
-	return &getUserUseCase{}
+type getUserUseCase struct {
+	repo userrepo.Repository
 }
 
-// Execute ユーザー取得を実行（ダミーデータを返却）
+// NewGetUserUseCase GetUserUseCaseを生成
+func NewGetUserUseCase(repo userrepo.Repository) GetUserUseCase {
+	return &getUserUseCase{repo: repo}
+}
+
+// Execute ユーザー取得を実行（DBから参照）
 func (u *getUserUseCase) Execute(ctx context.Context, input inputdto.GetUserInput) (*outputdto.GetUserOutput, error) {
-	// ダミーユーザーID
-	const dummyUserID = "dummy-user-1"
-
-	if input.ID != dummyUserID {
-		return nil, apperrors.NewUserNotFoundError("user not found: " + input.ID)
-	}
-
-	// ダミーユーザーを生成
-	id, err := userid.New(dummyUserID)
+	id, err := userid.New(input.ID)
 	if err != nil {
-		panic("invalid dummy user ID: " + err.Error())
+		return nil, apperrors.NewUserNotFoundError("invalid user id: " + input.ID)
 	}
-	mail, err := email.New("tanaka@example.com")
-	if err != nil {
-		panic("invalid dummy email: " + err.Error())
-	}
-	dummyUser := user.New(id, "田中 太郎", mail)
 
-	return u.toOutput(dummyUser), nil
+	found, err := u.repo.FindByID(ctx, id)
+	if err != nil {
+		if errors.Is(err, userrepo.ErrNotFound) {
+			return nil, apperrors.NewUserNotFoundError("user not found: " + input.ID)
+		}
+		return nil, err
+	}
+
+	return u.toOutput(found), nil
 }
 
 func (u *getUserUseCase) toOutput(user *user.User) *outputdto.GetUserOutput {

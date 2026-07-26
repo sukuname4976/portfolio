@@ -14,7 +14,7 @@ import (
 	"github.com/sukuname4976/portfolio/apis/bff/src/domain/value-objects/message"
 	"github.com/sukuname4976/portfolio/apis/bff/src/domain/value-objects/pokemonid"
 	"github.com/sukuname4976/portfolio/apis/bff/src/domain/value-objects/pokemontype"
-	"github.com/sukuname4976/portfolio/apis/bff/test/mocks"
+	mocks "github.com/sukuname4976/portfolio/apis/bff/test/mocks/pokemon"
 	"go.uber.org/mock/gomock"
 )
 

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { getBffServerClient } from '@/api/bff-server-client'
 import { EchoForm } from './_components/EchoForm'
 
@@ -37,6 +38,13 @@ export default async function Home() {
       <section style={{ marginTop: '32px' }}>
         <h2>サンプル: フォームから BFF を呼び出し (ブラウザ → Next Route Handler → BFF)</h2>
         <EchoForm />
+      </section>
+
+      <section style={{ marginTop: '32px' }}>
+        <h2>ユーザー登録</h2>
+        <p>
+          <Link href="/register">登録フォームへ →</Link>
+        </p>
       </section>
     </main>
   )

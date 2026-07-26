@@ -1,0 +1,15 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    # クエリ定義 (-- name: ... のアノテーション付き SQL)
+    queries: "db/queries"
+    # スキーマソースは golang-migrate のマイグレーションを流用 (up のみ適用される)
+    schema: "db/migrations"
+    gen:
+      go:
+        package: "sqlc"
+        out: "src/infrastructure/auto-generated-by-sqlc"
+        # pgx/v5 を DB ドライバとして使用
+        sql_package: "pgx/v5"
+        emit_interface: true
+        emit_empty_slices: true

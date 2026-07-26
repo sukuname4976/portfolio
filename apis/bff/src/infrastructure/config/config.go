@@ -38,10 +38,11 @@ func ParseRunEnv(s string) (RunEnv, error) {
 
 // Config アプリケーション設定
 type Config struct {
-	RunEnv         RunEnv
-	Port           string
-	PokeAPIBaseURL string
-	HTTPTimeout    time.Duration
+	RunEnv             RunEnv
+	Port               string
+	PokeAPIBaseURL     string
+	UserServiceBaseURL string
+	HTTPTimeout        time.Duration
 }
 
 // Load 実行環境に応じて設定を読み込み
@@ -62,10 +63,11 @@ func Load() (*Config, error) {
 	}
 
 	return &Config{
-		RunEnv:         runEnv,
-		Port:           getEnvOrDefault("PORT", "8000"),
-		PokeAPIBaseURL: getEnvOrDefault("POKEAPI_BASE_URL", "https://pokeapi.co/api/v2"),
-		HTTPTimeout:    10 * time.Second,
+		RunEnv:             runEnv,
+		Port:               getEnvOrDefault("PORT", "8000"),
+		PokeAPIBaseURL:     getEnvOrDefault("POKEAPI_BASE_URL", "https://pokeapi.co/api/v2"),
+		UserServiceBaseURL: getEnvOrDefault("USER_SERVICE_BASE_URL", "http://localhost:8081"),
+		HTTPTimeout:        10 * time.Second,
 	}, nil
 }
 

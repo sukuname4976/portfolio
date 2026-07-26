@@ -18,15 +18,15 @@ gen-ogen:
 
 # mockgen でモック生成 (gateway-interfaces, repository-interfacesを自動検出)
 gen-mock:
-	@mkdir -p test/mocks
 	@find src -name "*.go" \( -path "*/gateway-interfaces/*" -o -path "*/repository-interfaces/*" \) | while read file; do \
 		dir=$$(dirname $$file); \
 		name=$$(basename $$file .go); \
 		pkg=$$(basename $$dir); \
+		mkdir -p test/mocks/$${pkg}; \
 		mockgen -source=$$file \
-			-destination=test/mocks/$${pkg}_$${name}_mock.go \
+			-destination=test/mocks/$${pkg}/$${name}_mock.go \
 			-package=mocks; \
-		echo "Generated: test/mocks/$${pkg}_$${name}_mock.go"; \
+		echo "Generated: test/mocks/$${pkg}/$${name}_mock.go"; \
 	done
 
 # ビルド
