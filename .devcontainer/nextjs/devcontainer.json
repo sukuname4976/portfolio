@@ -4,8 +4,7 @@
   "service": "nextjs-workspace-devcontainer",
   "workspaceFolder": "/monorepo-root-as-nextjs-workspace",
   "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {},
-    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
   "customizations": {
     "vscode": {
@@ -39,7 +38,7 @@
     "node-version": "echo '=== Node.js ===' && node --version",
     "npm-version": "echo '=== npm ===' && npm --version",
     "gh-version": "echo '=== GitHub CLI ===' && gh --version",
-    "claude-version": "echo '=== Claude Code ===' && claude --version",
+    "claude-code": "echo '=== Claude Code (native install) ===' && curl -fsSL https://claude.ai/install.sh | bash && \"$HOME/.local/bin/claude\" --version",
     "message": "echo 'Next.js の開発コンテナが起動し、セットアップを実行中...'"
   },
   "forwardPorts": [

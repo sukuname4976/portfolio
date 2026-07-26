@@ -7,8 +7,7 @@
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/node:1": {
       "version": "24"
-    },
-    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+    }
   },
   "customizations": {
     "vscode": {
@@ -46,7 +45,7 @@
     "gh-extensions-install": "echo '=== gh extensions install ===' && gh extension install yahsan2/gh-sub-issue",
     "go-version": "echo '=== Go ===' && go version",
     "gh-version": "echo '=== GitHub CLI ===' && gh --version",
-    "claude-version": "echo '=== Claude Code ===' && claude --version",
+    "claude-code": "echo '=== Claude Code (native install) ===' && curl -fsSL https://claude.ai/install.sh | bash && \"$HOME/.local/bin/claude\" --version",
     "message": "echo 'Go の開発コンテナが起動し、セットアップを実行中...'"
   },
   "forwardPorts": [
