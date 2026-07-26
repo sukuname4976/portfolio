@@ -13,6 +13,10 @@ paths:
     $ref: "paths/health.yaml"
   /api/v1/echo:
     $ref: "paths/echo.yaml"
+  /api/v1/users:
+    $ref: "paths/users.yaml"
+  /api/v1/users/{id}:
+    $ref: "paths/user.yaml"
 components:
   schemas:
     EchoRequest:
@@ -25,5 +29,11 @@ components:
       $ref: "components/schemas/pokemon.yaml#/PokemonData"
     TypeData:
       $ref: "components/schemas/pokemon.yaml#/TypeData"
+    UserResponse:
+      $ref: "components/schemas/user.yaml#/UserResponse"
+    UserData:
+      $ref: "components/schemas/user.yaml#/UserData"
+    CreateUserRequest:
+      $ref: "components/schemas/user.yaml#/CreateUserRequest"
     ErrorResponse:
       $ref: "components/schemas/error.yaml#/ErrorResponse"

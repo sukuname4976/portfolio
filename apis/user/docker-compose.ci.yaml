@@ -8,3 +8,24 @@ services:
         - type=gha
       cache_to:
         - type=gha,mode=max
+    environment:
+      # CI 用 Postgres (user_local) への接続先
+      - DATABASE_URL=postgres://local:local@postgres:5432/user_local?sslmode=disable
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # マイグレーションを適用してから品質チェックを実行する
+    command: sh -c "make migrate-up && make check"
+
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: local
+      POSTGRES_PASSWORD: local
+      # user サービス専用 DB を直接起動 (DB-per-service)
+      POSTGRES_DB: user_local
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U local -d user_local"]
+      interval: 5s
+      timeout: 5s
+      retries: 5

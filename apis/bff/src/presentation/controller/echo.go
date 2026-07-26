@@ -16,13 +16,18 @@ import (
 
 // Handler ogenのHandlerインターフェースを実装
 type Handler struct {
-	echoUseCase usecase.EchoUseCase
+	echoUseCase       usecase.EchoUseCase
+	createUserUseCase usecase.CreateUserUseCase
+	getUserUseCase    usecase.GetUserUseCase
 }
 
 // NewHandler Handlerを生成
 func NewHandler(cfg *config.Config) *Handler {
+	userGateway := gateway.NewUserAPIGateway(cfg.UserServiceBaseURL, cfg.HTTPTimeout)
 	return &Handler{
-		echoUseCase: newEchoUseCase(cfg),
+		echoUseCase:       newEchoUseCase(cfg),
+		createUserUseCase: usecase.NewCreateUserUseCase(userGateway),
+		getUserUseCase:    usecase.NewGetUserUseCase(userGateway),
 	}
 }
 

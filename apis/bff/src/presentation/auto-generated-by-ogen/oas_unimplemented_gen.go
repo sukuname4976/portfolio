@@ -13,12 +13,30 @@ type UnimplementedHandler struct{}
 
 var _ Handler = UnimplementedHandler{}
 
+// CreateUser implements createUser operation.
+//
+// Register user (proxy to user service).
+//
+// POST /api/v1/users
+func (UnimplementedHandler) CreateUser(ctx context.Context, req *CreateUserRequest) (r CreateUserRes, _ error) {
+	return r, ht.ErrNotImplemented
+}
+
 // Echo implements echo operation.
 //
 // Echo message with Pokemon info.
 //
 // POST /api/v1/echo
 func (UnimplementedHandler) Echo(ctx context.Context, req *EchoRequest) (r EchoRes, _ error) {
+	return r, ht.ErrNotImplemented
+}
+
+// GetUser implements getUser operation.
+//
+// Get user by ID (proxy to user service).
+//
+// GET /api/v1/users/{id}
+func (UnimplementedHandler) GetUser(ctx context.Context, params GetUserParams) (r GetUserRes, _ error) {
 	return r, ht.ErrNotImplemented
 }
 

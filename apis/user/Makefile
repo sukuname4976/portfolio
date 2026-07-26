@@ -1,4 +1,4 @@
-.PHONY: up dev gen-ogen gen-ogen-check gen-mock build test lint format format-check markdownlint check prepare clean
+.PHONY: up dev gen-ogen gen-ogen-check gen-sqlc gen-sqlc-check gen-mock build test lint format format-check markdownlint check prepare clean migrate-up migrate-down migrate-create migrate-force
 
 # サーバー起動 （本番同等のバイナリ実行）
 up:
@@ -16,17 +16,48 @@ gen-ogen:
 		-clean \
 		IF/openapi.yaml
 
+# マイグレーション適用
+migrate-up:
+	migrate -path db/migrations -database "$$DATABASE_URL" up
+
+# マイグレーションを1つ戻す
+migrate-down:
+	migrate -path db/migrations -database "$$DATABASE_URL" down 1
+
+# マイグレーションファイルの新規作成
+migrate-create:
+	@test -n "$(name)" || (echo "usage: make migrate-create name=<migration_name>" && exit 1)
+	migrate create -ext sql -dir db/migrations -seq $(name)
+
+# 失敗状態のリセット (CI/開発でのみ使用)
+migrate-force:
+	@test -n "$(version)" || (echo "usage: make migrate-force version=<version>" && exit 1)
+	migrate -path db/migrations -database "$$DATABASE_URL" force $(version)
+
+# sqlc で SQL からコード生成
+gen-sqlc:
+	sqlc generate
+
+# sqlc 生成コードと SQL の同期確認 (CI 検出用)
+# 生成結果がディスク上の内容と一致しなければ失敗とする
+gen-sqlc-check:
+	@if ! sqlc diff; then \
+		echo "生成コードが SQL と同期していません。"; \
+		echo "make gen-sqlc を実行してコミットしてください。"; \
+		exit 1; \
+	fi
+
 # mockgen でモック生成 (gateway-interfaces, repository-interfacesを自動検出)
 gen-mock:
-	@mkdir -p test/mocks
 	@find src -name "*.go" \( -path "*/gateway-interfaces/*" -o -path "*/repository-interfaces/*" \) | while read file; do \
 		dir=$$(dirname $$file); \
 		name=$$(basename $$file .go); \
 		pkg=$$(basename $$dir); \
+		mkdir -p test/mocks/$${pkg}; \
 		mockgen -source=$$file \
-			-destination=test/mocks/$${pkg}_$${name}_mock.go \
+			-destination=test/mocks/$${pkg}/$${name}_mock.go \
 			-package=mocks; \
-		echo "Generated: test/mocks/$${pkg}_$${name}_mock.go"; \
+		echo "Generated: test/mocks/$${pkg}/$${name}_mock.go"; \
 	done
 
 # ビルド
@@ -73,10 +104,10 @@ gen-ogen-check:
 
 # CI チェック (build + test + lint-check + format-check + gen-ogen-check)
 # (Markdown Lint はリポジトリ全体を対象とし、node の依存関係が必要なため CI の別ジョブで実行する)
-check: build test lint-check format-check gen-ogen-check
+check: build test lint-check format-check gen-ogen-check gen-sqlc-check
 
 # コミット前の品質担保処理　　(build + test + lint + format + gen-ogen + gen-mock + markdownlint)
-prepare: build test lint format gen-ogen gen-mock markdownlint
+prepare: build test lint format gen-ogen gen-sqlc gen-mock markdownlint
 
 # 自動生成ファイルの削除
 clean:

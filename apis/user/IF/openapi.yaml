@@ -11,6 +11,8 @@ servers:
 paths:
   /health:
     $ref: "paths/health.yaml"
+  /api/v1/users:
+    $ref: "paths/users.yaml"
   /api/v1/users/{id}:
     $ref: "paths/user.yaml"
 components:
@@ -19,5 +21,7 @@ components:
       $ref: "components/schemas/user.yaml#/UserResponse"
     UserData:
       $ref: "components/schemas/user.yaml#/UserData"
+    CreateUserRequest:
+      $ref: "components/schemas/user.yaml#/CreateUserRequest"
     ErrorResponse:
       $ref: "components/schemas/error.yaml#/ErrorResponse"
