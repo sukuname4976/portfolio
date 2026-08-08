@@ -9,7 +9,7 @@ services:
     command: sleep infinity
     environment:
       - WORKSPACE_ROOT=/monorepo-root-as-terraform-workspace
-      - TF_LOG=INFO
+      # TF_LOG は既定では設定しない。全コマンドが INFO ログを吐いて出力が読めなくなるため
 
 volumes:
   vscode-extensions:

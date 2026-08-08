@@ -4,7 +4,8 @@
   "service": "nextjs-workspace-devcontainer",
   "workspaceFolder": "/monorepo-root-as-nextjs-workspace",
   "features": {
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/dhoeric/features/hadolint:1": {}
   },
   "customizations": {
     "vscode": {
