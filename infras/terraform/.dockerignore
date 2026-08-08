@@ -1,0 +1,35 @@
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Terraform
+# .terraform/ はホスト側アーキテクチャの provider バイナリを含むため必ず除外する
+# (arm64 の devcontainer で取得したものを amd64 の CI に持ち込むと不整合になる)
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terraformrc
+terraform.rc
+
+# Documentation
+*.md
+!README.md
+
+# Environment
+.env
+.env.*
+
+# DevContainer
+.devcontainer/
+
+# Docker
+Dockerfile*
+docker-compose*.yaml
+.dockerignore
