@@ -35,20 +35,21 @@
   },
   "features": {
     "ghcr.io/devcontainers/features/terraform:1": {
-      "version": "latest"
+      // CI (docker-compose.ci.yaml) と同じバージョンに固定する
+      "version": "1.15.8"
     },
-    "ghcr.io/devcontainers/features/aws-cli:1": {},
-    "ghcr.io/devcontainers/features/azure-cli:1": {},
     "ghcr.io/devcontainers/features/github-cli:1": {},
     "ghcr.io/devcontainers/features/node:1": {
       "version": "24"
-    }
+    },
+    "ghcr.io/dhoeric/features/hadolint:1": {}
   },
   "postCreateCommand": {
     "npm-install": "echo '=== npm install ===' && npm install",
     "gh-extensions-install": "echo '=== gh extensions install ===' && gh extension install yahsan2/gh-sub-issue",
     "terraform-version": "echo '=== Terraform ===' && terraform --version",
     "gh-version": "echo '=== GitHub CLI ===' && gh --version",
+    "gcloud-version": "echo '=== gcloud ===' && gcloud --version",
     "claude-code": "echo '=== Claude Code (native install) ===' && curl -fsSL https://claude.ai/install.sh | bash && \"$HOME/.local/bin/claude\" --version",
     "message": "echo 'Terraform の開発コンテナが起動し、セットアップを実行中...'"
   }

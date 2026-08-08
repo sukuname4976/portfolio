@@ -2,9 +2,11 @@
 .terraform/
 *.tfstate
 *.tfstate.*
-.terraform.lock.hcl
 terraform.tfvars
 *.tfvars
 .terraformrc
 terraform.rc
+
+# .terraform.lock.hcl は provider のバージョンを固定して再現性を担保するため、
+# 意図的に無視せずコミットする（Terraform 公式の推奨）。
 
