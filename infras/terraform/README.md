@@ -83,6 +83,16 @@ CI では `docker-compose.ci.yaml` 経由で同じ `make check` を実行する�
 - 乖離すると現在の環境が何によって作られたのかを追えなくなり、
   IaC が成立しなくなる
 
+### apply は人間が必ず実行する
+
+`terraform apply` と `terraform destroy` は AI エージェントに実行させない。
+人間が差分を目で確認したうえで手で実行する。
+
+- 適用は実環境を書き換える操作で、取り消しが利かないものを含む
+- Claude Code では `.claude/settings.json` の `permissions.deny` に
+  `terraform apply` / `terraform destroy` / `make apply` を登録して禁止している
+- エージェントに任せてよいのは `plan` までとする
+
 ### apply は手動ローカル実行のみ
 
 - state はローカル管理とし、CI では実行しない
