@@ -2,12 +2,12 @@
   "permissions": {
     "allow": [],
     "deny": [
-      "Bash(terraform apply)",
-      "Bash(terraform apply *)",
-      "Bash(terraform destroy)",
-      "Bash(terraform destroy *)",
-      "Bash(make apply)",
-      "Bash(make apply *)"
+      "Bash(terraform apply*)",
+      "Bash(terraform * apply*)",
+      "Bash(terraform destroy*)",
+      "Bash(terraform * destroy*)",
+      "Bash(make apply*)",
+      "Bash(make * apply*)"
     ]
   },
   "extraKnownMarketplaces": {

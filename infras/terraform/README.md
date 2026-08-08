@@ -89,9 +89,24 @@ CI では `docker-compose.ci.yaml` 経由で同じ `make check` を実行する�
 人間が差分を目で確認したうえで手で実行する。
 
 - 適用は実環境を書き換える操作で、取り消しが利かないものを含む
-- Claude Code では `.claude/settings.json` の `permissions.deny` に
-  `terraform apply` / `terraform destroy` / `make apply` を登録して禁止している
 - エージェントに任せてよいのは `plan` までとする
+
+禁止は 2 層で担保する。
+
+1. **設定による機械的な禁止**: `.claude/settings.json` の `permissions.deny` に
+   `terraform apply` / `terraform destroy` / `make apply` を登録する
+2. **ドキュメントによる指示**: 本 README と
+   `docs-obsidian-vault/projects/infra-terraform/agents-base.md` に記載する
+
+`permissions.deny` のパターンは正規表現ではなく `*` のグロブだが、`*` は
+先頭·中間·末尾のどこにでも書ける。`terraform * apply*` の形にすることで
+`terraform -chdir=... apply` も塞いでいる。また Claude Code は `&&` や `;` で
+つながった複合コマンドを分解して各サブコマンドを個別に判定するため、
+`cd infras/terraform && terraform apply` も捕まる。
+
+ただし引数を条件にするパターンには原理的に抜け道が残る
+(`sh -c "terraform apply"`·変数展開·ラッパースクリプト経由など)。
+1 は最後の砦であって一次的な歯止めではないため、2 の指示とセットで運用する。
 
 ### apply は手動ローカル実行のみ
 
