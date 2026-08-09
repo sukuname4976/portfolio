@@ -2,8 +2,7 @@
 
 ## 概要
 
-インフラストラクチャ定義。
-現時点では GitHub リポジトリの設定を IaC として管理する。
+インフラストラクチャ定義。Terraform でコードとして管理する。
 
 ## 技術スタック
 
@@ -60,67 +59,25 @@ CI では `docker-compose.ci.yaml` 経由で同じ `make check` を実行する�
 ## 認証
 
 - GitHub provider は環境変数 `GITHUB_TOKEN` を参照する
-- `load-env.sh` はトークンの値ではなく取得コマンド (`gh auth token`) を
-  記述しているため、秘密情報がファイルにもディスクにも残らない
 - devcontainer はホストと home を共有しないため、コンテナに入り直すたびに
   `gh auth login` が必要になる
 
-## 運用ルール
+秘密をファイルに残さず取得コマンドだけを書く方針は `infra-terraform-0002` を
+参照。
 
-### コミットしてから apply する
-
-変更は必ずコミットしてから `terraform apply` する。
+## 適用の手順
 
 1. `terraform plan` で差分を確認する
 2. 変更をコミットする
 3. `terraform apply` で適用する
 
-理由:
+`apply` と `destroy` は人間が実行する。エージェントが進めてよいのは `plan`
+まで。state はローカル管理とし、CI では適用しない。
 
-- IaC はコードを環境の唯一の正とする仕組みである
-- 未コミットのまま apply すると、環境にだけ存在してコードに残らない変更が
-  生まれ、コードと実環境が乖離する
-- 乖離すると現在の環境が何によって作られたのかを追えなくなり、
-  IaC が成立しなくなる
-
-### apply は人間が必ず実行する
-
-`terraform apply` と `terraform destroy` は AI エージェントに実行させない。
-人間が差分を目で確認したうえで手で実行する。
-
-- 適用は実環境を書き換える操作で、取り消しが利かないものを含む
-- エージェントに任せてよいのは `plan` までとする
-
-禁止は 2 層で担保する。
-
-1. **設定による機械的な禁止**: `.claude/settings.json` の `permissions.deny` に
-   `terraform apply` / `terraform destroy` / `make apply` を登録する
-2. **ドキュメントによる指示**: 本 README と
-   `docs-obsidian-vault/projects/infra-terraform/agents-base.md` に記載する
-
-`permissions.deny` のパターンは正規表現ではなく `*` のグロブだが、`*` は
-先頭·中間·末尾のどこにでも書ける。`terraform * apply*` の形にすることで
-`terraform -chdir=... apply` も塞いでいる。また Claude Code は `&&` や `;` で
-つながった複合コマンドを分解して各サブコマンドを個別に判定するため、
-`cd infras/terraform && terraform apply` も捕まる。
-
-ただし引数を条件にするパターンには原理的に抜け道が残る
-(`sh -c "terraform apply"`·変数展開·ラッパースクリプト経由など)。
-1 は最後の砦であって一次的な歯止めではないため、2 の指示とセットで運用する。
-
-### apply は手動ローカル実行のみ
-
-- state はローカル管理とし、CI では実行しない
-- リモート化する場合は `main.tf` に backend を定義する
+この手順を定めた理由と `permissions.deny` による担保は
+`infra-terraform-0001` を参照。
 
 ## 管理対象
 
-### main ブランチの保護
-
-`github.tf` の `github_repository_ruleset` で管理する。
-
-- 直 push を禁止し、変更を PR 経由に限定する
-- force-push を禁止する
-- ブランチの削除を禁止する
-
-`bypass_actors` は定義していないため、管理者も直 push できない。
+- main ブランチの保護 (`github.tf`)。規則の内容と選定の理由は
+  `infra-terraform-0003` を参照
