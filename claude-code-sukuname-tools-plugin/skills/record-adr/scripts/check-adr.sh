@@ -7,7 +7,8 @@
 set -uo pipefail
 
 SECTIONS=(決定事項 コンテキスト 却下事項 前提と見直し条件 関連資料 変更履歴)
-KEYS=(id summary status created updated version)
+KEYS=(id summary status level created updated version)
+LEVELS=(policy design choice)
 
 status=0
 
@@ -42,6 +43,12 @@ for file in "$@"; do
   id=$(grep -m1 '^id:' <<<"$frontmatter" | sed 's/^id:[[:space:]]*//')
   version=$(grep -m1 '^version:' <<<"$frontmatter" | sed 's/^version:[[:space:]]*//')
   adr_status=$(grep -m1 '^status:' <<<"$frontmatter" | sed 's/^status:[[:space:]]*//')
+  level=$(grep -m1 '^level:' <<<"$frontmatter" | sed 's/^level:[[:space:]]*//')
+
+  case " ${LEVELS[*]} " in
+  *" ${level} "*) ;;
+  *) report "$file" "level が ${LEVELS[*]} のいずれでもない: ${level}" ;;
+  esac
 
   grep -qE '^[0-9]+\.[0-9]+\.[0-9]+$' <<<"$version" ||
     report "$file" "version が <major>.<minor>.<patch> ではない: ${version}"
@@ -51,8 +58,8 @@ for file in "$@"; do
   fi
 
   case "$(basename "$file" .md)" in
-  "${id}-"*) ;;
-  *) report "$file" "ファイル名が id で始まっていない: ${id}" ;;
+  "${id}-${level}-"*) ;;
+  *) report "$file" "ファイル名が <id>-<level>- で始まっていない: ${id}-${level}" ;;
   esac
 
   prefix=${id%-*}

@@ -15,12 +15,8 @@ allowed-tools: Bash(*/skills/record-adr/scripts/check-adr.sh *)
 ## 手順
 
 1. 上記の ADR を読み、書式と規則を確認する
-2. 既存の ADR を検索し、同じ課題を扱うものがないか確認する
-
-   ```bash
-   ls docs-obsidian-vault/*/decisions/ docs-obsidian-vault/projects/*/decisions/
-   grep -rl "<キーワード>" docs-obsidian-vault --include="*.md"
-   ```
+2. `find-adr` skill で既存の ADR を検索し、同じ課題を扱うものがないか
+   確認する
 
 3. 新規作成か更新かを決める
    - 同じ課題を扱う ADR がある → **更新**
@@ -40,20 +36,28 @@ allowed-tools: Bash(*/skills/record-adr/scripts/check-adr.sh *)
    決定の主語がどこかで決まる。複数のプロジェクトにまたがる場合や、
    リポジトリの運営そのものが主語の場合は `repository-overview` に置く。
 
-3. ID を採番する
+3. 階層を決める
+
+   「どちらを選んでも上位の方針を達成できるか」で判定する。できるなら
+   `choice`、できないなら `design` か `policy` になる。
+
+4. ID を採番する
 
    ```bash
-   ls docs-obsidian-vault/<置き場所>/decisions/
+   <skills>/find-adr/scripts/list-adr.sh --dir <置き場所>
    ```
 
    既存の最大番号に 1 を足す。接頭辞は `decisions/` の親ディレクトリ名。
 
-4. ファイルを作成し、6 節すべてを埋める
+   並行して作業しているブランチがあると、同じ番号を採ることがある。
+   マージ時に衝突したら、片方をリネームして `id` と参照を直す。
+
+5. ファイルを作成し、6 節すべてを埋める
 
    節ごとに何を書くかは ADR の `決定事項 > 書式` に定義されている。
    埋まらない節がある場合は、粒度か対象の切り方を見直す。
 
-5. 検証する
+6. 検証する
 
 ## 更新の手順
 
