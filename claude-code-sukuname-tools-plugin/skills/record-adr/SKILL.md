@@ -93,7 +93,7 @@ ls docs-obsidian-vault/repository-overview/decisions/repository-overview-0001-*
 
 ```bash
 <skills>/record-adr/scripts/check-adr.sh <ADR ファイル>
-<skills>/write-document/scripts/lint-md.sh <ADR ファイル>
+<skills>/review-docs/scripts/lint-md.sh <ADR ファイル>
 ```
 
 `check-adr.sh` は frontmatter・ID・ファイル名・節構成を検証する。
