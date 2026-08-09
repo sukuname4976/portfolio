@@ -2,7 +2,7 @@
 
 ## 概要
 
-Golang 製の BFF (Backend for Frontend) サービス。クリーンアーキテクチャに基づいて構築。
+Go 製の BFF (Backend for Frontend) サービス。クリーンアーキテクチャに基づいて構築。
 
 ## 技術スタック
 
