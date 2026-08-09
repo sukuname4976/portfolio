@@ -8,9 +8,15 @@ allowed-tools: Bash(*/skills/record-adr/scripts/check-adr.sh *)
 
 判断を ADR (All Decision Record) として制定する。
 
-書式と規則の正は
-`docs-obsidian-vault/repository-overview/decisions/repository-overview-0001-record-decisions-as-adr.md`
-にある。本スキルは手順だけを持つ。**着手前に必ずこの ADR を読むこと。**
+書式と規則の正は `repository-overview-0001` にある。本スキルは手順だけを持つ。
+**着手前に必ずこの ADR を読むこと。**
+
+```bash
+ls docs-obsidian-vault/repository-overview/decisions/repository-overview-0001-*
+```
+
+ファイル名には `level` と決定内容が含まれ、書き換えで変わることがある。
+参照するときは ID を使い、ファイル名を直接書かない。
 
 ## 手順
 
