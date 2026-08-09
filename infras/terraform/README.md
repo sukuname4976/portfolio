@@ -72,7 +72,7 @@ CI では `docker-compose.ci.yaml` 経由で同じ `make check` を実行する�
 3. `terraform apply` で適用する
 
 `apply` と `destroy` は人間が実行する。エージェントが進めてよいのは `plan`
-まで。state はローカル管理とし、CI では適用しない。
+まで。
 
 この手順を定めた理由と `permissions.deny` による担保は
 `infra-terraform-0001` を参照。
