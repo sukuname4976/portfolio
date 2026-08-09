@@ -1,20 +1,15 @@
 # BFF API
 
-Go 製の BFF（Backend for Frontend）サービス。
+## 概要
 
-## 技術スタック
+Go 製の BFF (Backend for Frontend) サービス。クリーンアーキテクチャで構成し、
+ogen で OpenAPI からコードを生成する。
 
-- Go 1.21
-- 標準ライブラリ（net/http）
+## 作業の進め方
 
-## コーディングルール
-
-- `go fmt` でフォーマット
-- `go vet` でチェック
-- エラーは必ずハンドリングする（`_`で握りつぶさない）
-- 関数コメントは `// FunctionName ...` の形式で書く
-
-## ディレクトリ構成
-
-- `main.go` - エントリーポイント
-- `IF/` - インターフェース定義（OpenAPI）
+- このファイルを読み込んだら、応答の冒頭に次の 1 行を出力する
+  - `ドキュメントの指示に従い projects/api-bff/agents-base.md を参照したことを通知します`
+- 大きな変更をしたら `make prepare` を実行し、その時点で問題が無いことを
+  確定させる。コミット時にまとめて手戻りが出るのを避けるため
+- `auto-generated-by-` で始まるディレクトリと `test/mocks/` は生成物なので
+  直接編集しない。`IF/openapi.yaml` を変更して再生成する

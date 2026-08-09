@@ -2,6 +2,8 @@
   "gitignore": true,
   "config": {
     // MD041: 最初の行がh1である必要がある → claude codeのskillsとの相性が悪いため無効化
-    "MD041": false
+    "MD041": false,
+    // MD024: 見出し名の重複 → 同じ小見出しを繰り返す文書が書けず不便なため親が異なれば許可
+    "MD024": { "siblings_only": true }
   }
 }
