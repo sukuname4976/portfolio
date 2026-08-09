@@ -1,4 +1,4 @@
-# Golang Shared Library
+# Go Shared Library
 
 ## 概要
 

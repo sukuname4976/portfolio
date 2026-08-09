@@ -45,8 +45,16 @@ count=0
 while IFS= read -r file; do
   [ -f "$file" ] || continue
 
-  heading=$(grep -m1 '^# ' "$file" | sed 's/^# //')
-  overview=$(awk '/^## 概要/ {getline; getline; print; exit}' "$file")
+  # コードブロック内の見出しは例文なので除く
+  heading=$(awk '
+    /^```/ {fence = !fence; next}
+    !fence && /^# / {sub(/^# /, ""); print; exit}
+  ' "$file")
+  overview=$(awk '
+    /^```/ {fence = !fence; next}
+    !fence && /^## 概要/ {found = 1; next}
+    found && NF {print; exit}
+  ' "$file")
   summary=${overview:-$heading}
   [ -n "$summary" ] || continue
 
