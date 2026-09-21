@@ -37,6 +37,31 @@ resource "github_repository_ruleset" "main_protection" {
       require_last_push_approval        = false
       required_review_thread_resolution = false
     }
+
+    # CI と AI レビューの成功をマージの条件にする。
+    # PR を経由させるだけでは CI が落ちていてもマージできてしまうため、
+    # .github/workflows/ci.yaml の 2 ジョブが成功しない限りマージできないようにする。
+    required_status_checks {
+      # context はワークフローのジョブ名 (jobs.<id>.name) と一致させる。
+      # integration_id は指定しない。GitHub Actions のチェックは省略しても対象になる。
+      required_check {
+        context = "Nx 変更検出したプロジェクトへ CI を実行"
+      }
+
+      required_check {
+        context = "リポジトリ全体へ Markdown Lint を実行"
+      }
+
+      # AI レビュー (.github/workflows/claude-code-PR-review.yaml) の指摘が返る前にマージしないようにする。
+      required_check {
+        context = "Claude Code による PR コードレビューを実行"
+      }
+
+      # strict を true にすると、PR のブランチが main の最新を取り込んでいないと
+      # マージできなくなる。ソロ運用では並行して進む PR が少なく、main が進むたびに
+      # PR ごとに取り込み直す手間が見合わないため false のままにする。
+      strict_required_status_checks_policy = false
+    }
   }
 
   # bypass_actors は意図的に定義しない。
