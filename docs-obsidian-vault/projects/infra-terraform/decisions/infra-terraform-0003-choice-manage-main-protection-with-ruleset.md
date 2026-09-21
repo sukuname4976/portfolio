@@ -3,8 +3,9 @@ id: infra-terraform-0003
 summary: |-
   main が無保護で直 push が通り、過去に feature ブランチの push が main へ直行する
   事故が起きていた。保護は従来の branch protection ではなく後継の ruleset で管理し、
-  PR を必須にして force-push とブランチ削除を禁止する。CI の 2 ジョブの成功を
-  必須のステータスチェックとする。承認必須数は 0、bypass_actors は定義しない。
+  PR を必須にして force-push とブランチ削除を禁止する。CI の 2 ジョブと
+  AI レビューの 1 ジョブの成功を必須のステータスチェックとする。承認必須数は 0、
+  bypass_actors は定義しない。
 status: 採用
 level: choice
 created: 2026-08-09
@@ -22,9 +23,11 @@ version: 1.1.0
   - `pull_request` を必須とし、承認必須数は 0 とする
   - `non_fast_forward` により force-push を禁止する
   - `deletion` によりブランチの削除を禁止する
-  - `required_status_checks` により、CI の 2 ジョブの成功を必須のステータス
-    チェックとする。対象は `Nx 変更検出したプロジェクトへ CI を実行` と
-    `リポジトリ全体へ Markdown Lint を実行` で、`context` はワークフローの
+  - `required_status_checks` により、CI の 2 ジョブと AI レビューの 1 ジョブの
+    成功を必須のステータスチェックとする。対象は
+    `Nx 変更検出したプロジェクトへ CI を実行`、
+    `リポジトリ全体へ Markdown Lint を実行`、
+    `Claude Code による PR コードレビューを実行` で、`context` はワークフローの
     ジョブ名と一致させ、`integration_id` は指定しない
   - `strict_required_status_checks_policy` は false とする
 - `bypass_actors` は定義しない。管理者も直接 push できない状態を保つ
@@ -45,7 +48,9 @@ GitHub にはブランチを保護する仕組みが 2 つある。従来の bra
 初版の ruleset は PR を必須にするだけで、CI の成功をマージの条件にして
 いなかった。CI が落ちていても PR をマージできる状態で、Issue #36 で規範を
 仕組みで強制する方針を書く途中で判明した。CI は `.github/workflows/ci.yaml` の
-2 ジョブからなり、GitHub Actions のチェックはジョブ名を `context` として扱う。
+2 ジョブからなり、AI レビューは `.github/workflows/claude-code-PR-review.yaml` の
+1 ジョブで PR ごとに実行される。GitHub Actions のチェックはジョブ名を
+`context` として扱う。
 `strict_required_status_checks_policy` を true にすると、PR のブランチが main の
 最新を取り込んでいない限りマージできない。
 
@@ -62,7 +67,8 @@ GitHub にはブランチを保護する仕組みが 2 つある。従来の bra
   変更したときに設定が追従せず、保護が外れたことに気づけない
 - **必須のステータスチェックを設けない**: ruleset の設定が短く済み、CI の
   ジョブ名を変えても ruleset に追従させる手間がないが、CI が落ちていても PR を
-  マージできる。マージ前の自動検証を人が見落とすと、壊れた変更が main に入る
+  マージできる。マージ前の自動検証を人が見落とすと、壊れた変更が main に入る。
+  AI レビューの指摘が返る前にマージすることも止められない
 - **`strict_required_status_checks_policy` を true にする**: main の最新と
   合わせた状態で CI を通した変更だけがマージされ、個別には通るが合わせると
   壊れる変更を防げるが、main が進むたびに PR ごとに取り込み直して CI を
@@ -77,8 +83,8 @@ GitHub にはブランチを保護する仕組みが 2 つある。従来の bra
   `bypass_actors` を追加するかを検討する
 - GitHub が ruleset を後継として維持していることを前提とする。位置づけが
   変わったとき、管理の方法を見直す
-- 必須のステータスチェックは CI のジョブ名で指定している。ジョブ名を変えた
-  とき、または CI のジョブを増減したとき、`required_check` を合わせて変える
+- 必須のステータスチェックはワークフローのジョブ名で指定している。ジョブ名を
+  変えたとき、またはジョブを増減したとき、`required_check` を合わせて変える
 - 並行して進む PR が少ないことを前提とする。個別には CI が通るのに main へ
   マージすると壊れる変更が入ったとき、
   `strict_required_status_checks_policy` を true にするかを見直す
@@ -87,13 +93,17 @@ GitHub にはブランチを保護する仕組みが 2 つある。従来の bra
 
 - [[infra-terraform-0001-policy-terraform-with-manual-apply]] :
   インフラを Terraform で管理する方針
+- [[repository-overview-0005-design-automated-pr-review]] :
+  すべての PR に AI レビューを通す決定。本決定はその成功をマージの条件にする
 - `infras/terraform/github.tf` : 実装
 - `.github/workflows/ci.yaml` : 必須のステータスチェックとする CI のジョブ
+- `.github/workflows/claude-code-PR-review.yaml` : 必須のステータスチェックと
+  する AI レビューのジョブ
 - Issue #9 : 本決定を行った作業
 - Issue #41 : 必須のステータスチェックを追加した作業
 
 ## 変更履歴
 
-- v1.1.0 (2026-09-21): CI の 2 ジョブの成功を必須のステータスチェックとする
-  規則を追加した
+- v1.1.0 (2026-09-21): CI の 2 ジョブと AI レビューの 1 ジョブの成功を必須の
+  ステータスチェックとする規則を追加した
 - v1.0.0 (2026-08-09): 初版

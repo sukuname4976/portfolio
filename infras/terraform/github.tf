@@ -38,7 +38,7 @@ resource "github_repository_ruleset" "main_protection" {
       required_review_thread_resolution = false
     }
 
-    # CI の成功をマージの条件にする。
+    # CI と AI レビューの成功をマージの条件にする。
     # PR を経由させるだけでは CI が落ちていてもマージできてしまうため、
     # .github/workflows/ci.yaml の 2 ジョブが成功しない限りマージできないようにする。
     required_status_checks {
@@ -50,6 +50,11 @@ resource "github_repository_ruleset" "main_protection" {
 
       required_check {
         context = "リポジトリ全体へ Markdown Lint を実行"
+      }
+
+      # AI レビュー (.github/workflows/claude-code-PR-review.yaml) の指摘が返る前にマージしないようにする。
+      required_check {
+        context = "Claude Code による PR コードレビューを実行"
       }
 
       # strict を true にすると、PR のブランチが main の最新を取り込んでいないと
